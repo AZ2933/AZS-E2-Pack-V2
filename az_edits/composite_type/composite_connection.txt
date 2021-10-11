@@ -1,0 +1,17 @@
+@name ptgamma/az_edits/composite_type/composite_connection
+@inputs CtlTable:table
+@outputs SelectorUp SelectorDown TransitionNotch
+#@persist 
+#@trigger 
+
+#Started At: 7:42 - 7:58
+#Edited At: 12:22 - 12:24
+#Time: PM EST 8/30/21
+#Time: AM EST 9/1/21
+
+SelectorUp = CtlTable["TransitionUp",number]
+       #Remove \/ If Needed
+SelectorDown = -CtlTable["TransitionDown",number]
+TransitionNotch = CtlTable["TransitionNum",number]
+
+setName("Composite Connection (By AZ)")
