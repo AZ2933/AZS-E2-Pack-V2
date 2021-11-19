@@ -1,0 +1,32 @@
+@name Working Crossover
+@inputs Lower
+@outputs 
+@persist 
+@trigger 
+
+E = entity()
+
+FirstDupeCode = first() |dupefinished()
+
+if(FirstDupeCode){
+
+A = 1
+holoCreate(A)
+holoParent(A,E)
+holoModel(A,"models/zexciv_train_stuff/misc/details/crossover.mdl")
+holoAng(A,E:toWorld(ang(0,0,-90)))
+holoPos(A,E:toWorld(vec(0,0,0)))
+holoScale(A,vec(1))
+holoAlpha(A,255)
+holoEntity(A):setSubMaterial(1,"")
+holoMaterial(A,"")
+holoColor(A,vec(255))
+holoDisableShading(A,0)
+}
+if(Lower){
+soundPlay(0,0,"monkssounds/buttons/heavy buttons/heavybutton15.wav")
+holoAng(1,entity():toWorld(ang(0,0,0)))
+}else{
+soundPlay(0,0,"monkssounds/buttons/heavy buttons/heavybutton4_push.wav")
+holoAng(1,entity():toWorld(ang(0,0,-90)))
+}

@@ -1,0 +1,67 @@
+@name Working Cutbar
+@inputs Open
+@outputs 
+@persist 
+@trigger 
+
+E = entity()
+
+FirstDupeCode = first() |dupefinished()
+
+if(FirstDupeCode){
+
+A = 1
+holoCreate(A)
+holoParent(A,E)
+holoModel(A,"models/gsgtrainprops/parts/couplers/type_e_coupler.mdl")
+holoPos(A,E:toWorld(vec(13,0,12)))
+holoAng(A,E:toWorld(ang(-90,0,0)))
+holoScale(A,vec(1))
+holoAlpha(A,255)
+holoMaterial(A,"models/proppertextures/wheel")
+holoEntity(A):setSubMaterial(1,"")
+holoColor(A,vec(255))
+holoDisableShading(A,0)
+holoBodygroup(A,1,1)
+
+A = 2
+holoCreate(A)
+holoParent(A,E)
+holoModel(A,"models/anytrains/props/detail/cutbar.mdl")
+holoPos(A,E:toWorld(vec(-3,0,0)))
+holoAng(A,E:toWorld(ang(90,180,0)))
+holoScale(A,vec(1))
+holoAlpha(A,255)
+holoMaterial(A,"")
+holoEntity(A):setSubMaterial(1,"")
+holoColor(A,vec(255))
+holoDisableShading(A,0)
+holoBodygroup(A,2,5)
+
+A = 3
+holoCreate(A)
+holoParent(A,E)
+holoModel(A,"models/parts/flumz/coupler_pin.mdl")
+holoPos(A,E:toWorld(vec(4,0.5,14)))
+holoAng(A,E:toWorld(ang(-90,0,0)))
+holoScale(A,vec(1))
+holoAlpha(A,255)
+holoMaterial(A,"")
+holoEntity(A):setSubMaterial(1,"")
+holoColor(A,vec(255))
+holoDisableShading(A,0)
+
+
+}
+
+if(Open){
+soundPlay(0,0,"opencontrol/misc/uncouple1.wav")
+holoBodygroup(1,1,1)
+holoBodygroup(2,2,4)
+holoPos(3,entity():toWorld(vec(1.6,0,14.7)))
+}else{
+soundPlay(0,0,"opencontrol/misc/couple1.wav")
+holoBodygroup(1,1,0)
+holoBodygroup(2,2,5)
+holoPos(3,entity():toWorld(vec(4,0.5,14)))
+}
