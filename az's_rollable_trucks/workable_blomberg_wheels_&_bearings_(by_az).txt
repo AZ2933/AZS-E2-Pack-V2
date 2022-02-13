@@ -1,0 +1,384 @@
+@name az's_rollable_trucks/Workable Blomberg Wheels & Bearings (By AZ)
+@inputs [Locomotive,Blomberg_B]:entity #Trucks:array On1 CtlTable:table AB16M_Notch Emergency
+@outputs VelLMul Speed
+@persist Roll VelL [E,E1,E2,E3,E4]:entity [WheelModelPHX,WheelModelRSG,TimkenModel,CurveSound]:string SpeedMul Speed 
+@persist CTLT:table BearingAng BearingAng2 BearingAng3 BearingAng4 PitchMul PP:string N Brake VelLMul MotorVolume Gauge 
+@persist NonInvis Invis TimkenPHX TimkenRSG Bogie:entity Sound Angle Angle2
+@trigger none
+
+#Started At: 4:16 - 10:47 | 3:59 - 6:48 |
+#Time: PM EST 2/9-13/21
+#Maybe Still WIP?...
+
+E = Blomberg_B
+Bogie = Blomberg_B
+interval(100)
+#CTLT = CtlTable
+if(first()|dupefinished()){
+
+#Timken
+E:setBodygroup(1,2)
+E:setBodygroup(2,2)
+E:setBodygroup(3,2)
+E:setBodygroup(4,2)
+#Wheels
+E:setSubMaterial(8,"models/proppertextures/invisible")
+E:setSubMaterial(9,"models/proppertextures/invisible")
+E:setSubMaterial(10,"models/proppertextures/invisible")
+
+#
+
+Gauge = 0
+#0 = PHX
+#1 = RSG
+WheelModelPHX = "models/anytrains/props/locoparts/axle_40_phx.mdl"
+WheelModelRSG = "models/anytrains/props/locoparts/axle_40_rsg.mdl" 
+TimkenModel = "models/parts/bearing_timken.mdl"
+TimkenTexture = "models/proppertextures/enamel_black"
+#Brake = CTLT["SetLocoBrakePressure",number]
+PitchMul = 0.16
+MotorVolume = 0.5
+CurveSound = "priority's sounds/wheels/flange2.wav"
+#Use "_jazzlok/brakes/flange_loop.wav" if it doesn't really sound good enough when the curves passes by. 
+
+#  
+#--------------------PHX--------------------#
+
+    A = 0
+    holoCreate(A)
+    holoParent(A,E)
+    holoModel(A,WheelModelPHX)
+    holoScale(A,vec(1))
+    holoAng(A,E:toWorld(ang(0,0,0)))
+    holoPos(A,E:toWorld(vec(0,-54.1,-26.47)))
+    holoColor(A,vec(255))
+    holoBodygroup(A,1,1)
+    
+    E1 = holoEntity(0)
+    
+    A = 1
+    holoCreate(A)
+    holoParent(A,E1)
+    holoModel(A,TimkenModel)
+    holoScale(A,vec(1.4,1,1.4))
+    holoAng(A,E1:toWorld(ang(0,0,0)))
+    holoPos(A,E1:toWorld(vec(0,0,0)))
+    holoColor(A,vec(255))
+    holoMaterial(A,TimkenTexture)
+    
+    A = 2
+    holoCreate(A)
+    holoParent(A,E1)
+    holoModel(A,TimkenModel)
+    holoScale(A,vec(1.4,1,1.4))
+    holoAng(A,E1:toWorld(ang(0,0,0)))
+    holoPos(A,E1:toWorld(vec(0,0,0)))
+    holoColor(A,vec(255))
+    holoMaterial(A,TimkenTexture)
+
+#
+
+    A = 3
+    holoCreate(A)
+    holoParent(A,E)
+    holoModel(A,WheelModelPHX)
+    holoScale(A,vec(1))
+    holoAng(A,E:toWorld(ang(0,0,0)))
+    holoPos(A,E:toWorld(vec(0,54.1,-26.47)))
+    holoColor(A,vec(255))
+    holoBodygroup(A,1,1)
+    
+    E2 = holoEntity(3)
+    
+#
+    
+    A = 4
+    holoCreate(A)
+    holoParent(A,E2)
+    holoModel(A,TimkenModel)
+    holoScale(A,vec(1.4,1,1.4))
+    holoAng(A,E2:toWorld(ang(0,0,0)))
+    holoPos(A,E2:toWorld(vec(0,0,0)))
+    holoColor(A,vec(255))
+    holoMaterial(A,TimkenTexture)
+    
+    A = 5
+    holoCreate(A)
+    holoParent(A,E2)
+    holoModel(A,TimkenModel)
+    holoScale(A,vec(1.4,1,1.4))
+    holoAng(A,E2:toWorld(ang(0,0,0)))
+    holoPos(A,E2:toWorld(vec(0,0,0)))
+    holoColor(A,vec(255))
+    holoMaterial(A,TimkenTexture)
+    
+#
+#--------------------RSG--------------------#
+
+    A = 6
+    holoCreate(A)
+    holoParent(A,E)
+    holoModel(A,WheelModelRSG)
+    holoScale(A,vec(1))
+    holoAng(A,E:toWorld(ang(0,0,0)))
+    holoPos(A,E:toWorld(vec(0,-54.1,-26.47)))
+    holoColor(A,vec(255))
+    holoBodygroup(A,1,1)
+    
+    E3 = holoEntity(6)
+    
+    A = 7
+    holoCreate(A)
+    holoParent(A,E3)
+    holoModel(A,TimkenModel)
+    holoScale(A,vec(1.4,1,1.4))
+    holoAng(A,E3:toWorld(ang(0,0,0)))
+    holoPos(A,E3:toWorld(vec(0,0,0)))
+    holoColor(A,vec(255))
+    holoMaterial(A,TimkenTexture)
+    
+    A = 8
+    holoCreate(A)
+    holoParent(A,E3)
+    holoModel(A,TimkenModel)
+    holoScale(A,vec(1.4,1,1.4))
+    holoAng(A,E3:toWorld(ang(0,0,0)))
+    holoPos(A,E3:toWorld(vec(0,0,0)))
+    holoColor(A,vec(255))
+    holoMaterial(A,TimkenTexture)
+
+#
+
+    A = 9
+    holoCreate(A)
+    holoParent(A,E)
+    holoModel(A,WheelModelRSG)
+    holoScale(A,vec(1))
+    holoAng(A,E:toWorld(ang(0,0,0)))
+    holoPos(A,E:toWorld(vec(0,54.1,-26.47)))
+    holoColor(A,vec(255))
+    holoBodygroup(A,1,1)
+    
+    E4 = holoEntity(9)
+    
+#
+    
+    A = 10
+    holoCreate(A)
+    holoParent(A,E4)
+    holoModel(A,TimkenModel)
+    holoScale(A,vec(1.4,1,1.4))
+    holoAng(A,E4:toWorld(ang(0,0,0)))
+    holoPos(A,E4:toWorld(vec(0,0,0)))
+    holoColor(A,vec(255))
+    holoMaterial(A,TimkenTexture)
+    
+    A = 11
+    holoCreate(A)
+    holoParent(A,E4)
+    holoModel(A,TimkenModel)
+    holoScale(A,vec(1.4,1,1.4))
+    holoAng(A,E4:toWorld(ang(0,0,0)))
+    holoPos(A,E4:toWorld(vec(0,0,0)))
+    holoColor(A,vec(255))
+    holoMaterial(A,TimkenTexture)
+    
+}
+
+#
+    
+    VelLMul = E:velL() & SpeedMul
+    VelL = E:velL():y()/-4.25
+    Roll+=VelL
+    SpeedMul+=(Roll-SpeedMul)/4.6 #Idk why but i like this, more little realistic for now
+    Speed = E:vel():length()
+    
+
+    
+    if(first()|dupefinished()){   
+    #Bearings 
+    BearingAng = randint(54,87)   
+    BearingAng2 = randint(43,98) 
+    #PHX
+    holoAng(1,E1:toWorld(ang(BearingAng,-90,0)))    
+    holoAng(2,E1:toWorld(ang(BearingAng2,90,0)))
+    #RSG
+    holoAng(7,E3:toWorld(ang(BearingAng,-90,0)))    
+    holoAng(8,E3:toWorld(ang(BearingAng2,90,0)))
+    }
+    
+    #Wheels
+    #PHX
+    holoAng(0,E:toWorld(ang(0,0,SpeedMul)))
+    holoAng(3,E:toWorld(ang(0,0,SpeedMul)))
+    #RSG
+    holoAng(6,E:toWorld(ang(0,0,SpeedMul)))
+    holoAng(9,E:toWorld(ang(0,0,SpeedMul)))
+
+    if(first()|dupefinished()){   
+    #Bearings   
+    BearingAng3 = randint(48,73)   
+    BearingAng4 = randint(54,65) 
+    #PHX
+    holoAng(4,E2:toWorld(ang(BearingAng3,90,0)))    
+    holoAng(5,E2:toWorld(ang(BearingAng4,-90,0)))
+    #RSG
+    holoAng(10,E4:toWorld(ang(BearingAng3,90,0)))    
+    holoAng(11,E4:toWorld(ang(BearingAng4,-90,0)))
+    }
+    
+    if(first()|dupefinished()){
+        
+    NonInvis = 255
+    Invis = 0
+    TimkenPHX = 56.68 
+    TimkenRSG = 44.68
+    
+    if(Gauge == 0){
+    holoAlpha(0,NonInvis)    
+    holoAlpha(1,NonInvis)    
+    holoAlpha(2,NonInvis)    
+    holoAlpha(3,NonInvis)
+    holoAlpha(4,NonInvis)
+    holoAlpha(5,NonInvis)    
+    holoAlpha(6,Invis)    
+    holoAlpha(7,Invis)    
+    holoAlpha(8,Invis)
+    holoAlpha(9,Invis)   
+    holoAlpha(10,Invis)
+    holoAlpha(11,Invis)
+    }elseif(Gauge == 1){
+    holoAlpha(0,Invis)    
+    holoAlpha(1,Invis)    
+    holoAlpha(2,Invis)    
+    holoAlpha(3,Invis)
+    holoAlpha(4,Invis)
+    holoAlpha(5,Invis)    
+    holoAlpha(6,NonInvis)    
+    holoAlpha(7,NonInvis)    
+    holoAlpha(8,NonInvis)
+    holoAlpha(9,NonInvis)   
+    holoAlpha(10,NonInvis)
+    holoAlpha(11,NonInvis)
+    }
+    #
+    #PHX
+    holoPos(1,E1:toWorld(vec(TimkenPHX,0,0)))  
+    holoPos(2,E1:toWorld(vec(-TimkenPHX,0,0)))    
+    holoPos(4,E2:toWorld(vec(-TimkenPHX,0,0)))  
+    holoPos(5,E2:toWorld(vec(TimkenPHX,0,0)))
+    #
+    #RSG
+    holoPos(7,E3:toWorld(vec(TimkenRSG,0,0)))  
+    holoPos(8,E3:toWorld(vec(-TimkenRSG,0,0)))    
+    holoPos(10,E4:toWorld(vec(-TimkenRSG,0,0)))  
+    holoPos(11,E4:toWorld(vec(TimkenRSG,0,0)))
+    #
+    }
+    
+    
+      
+    #[
+#   
+    #Sounds
+    
+    #Em
+    if(changed(VelLMul == 1) & Emergency | AB16M_Notch == 2){
+    E:soundPlay("embrake",0,"_jazzlok/brakes/braking04.wav")
+    }    
+    if(changed(VelLMul == 0) & !Emergency){ 
+    soundStop("embrake",1.5)
+    }   
+    
+    #Loco
+    if(changed(Brake == 1 | AB16M_Notch == 0)){
+    E:soundPlay("brakecylinder",0,"_jazzlok/brakes/braking02.wav")
+    }    
+    if(changed(Brake == 0 | AB16M_Notch == -1)){  
+    soundStop("brakecylinder",1.5)
+    }
+    
+    ]#
+    
+    
+    Angle2 = Locomotive:angles():yaw()   
+
+    Angle = Bogie:angles():yaw()   
+
+    Total = round(Angle - Angle2)
+
+    if((Total <= -2 & Total >= -358) | Total >= 2)
+    {
+        Sound = 1
+    }
+    elseif(Total == 0 | Total <= 1 | Total >= -1 | Total <= -359)
+    {
+    Sound = 0
+    }
+
+    soundVolume("noise",(Speed / 600) * 0.5)
+
+
+    if(changed(Sound) & Sound)
+    {
+    
+    E:soundPlay("noise",0,CurveSound)
+    
+    }
+
+    if(!Sound)
+    {
+    soundVolume("noise",0)
+    soundStop("noise")
+    }
+
+    if(changed(Sound) & !Sound)
+    {
+    E:soundPlay("noise2",0,"_jazzlok/brakes/flange_stop.wav")
+    soundStop("noise2",1.5)
+    }
+    soundVolume("noise2",(Speed / 600) * 0.5)    
+        
+    soundPitch("noise",100 + (Speed / 200))
+    soundPitch("noise2",100 + (Speed / 200))
+    
+    #[
+    #Trucks
+    
+    #Em
+    if(VelLMul == 1 & Emergency | VelLMul & AB16M_Notch == 2){
+    PP = "dirt"
+    }elseif(VelLMul == 0 & !Emergency){ 
+    PP = "gmod_ice"
+    }   
+    
+    #Loco
+    if(Brake == 1 | AB16M_Notch == 0){
+    PP = "jeeptire"
+    }
+    if(Brake == 0 | AB16M_Notch == -1){  
+    PP = "gmod_ice"
+    }
+
+    for(N=1,Trucks:count()){
+    Trucks[N,entity]:propPhysicalMaterial(PP)
+    }    
+    
+    ]#
+    
+    if(first()|dupefinished()){
+        
+    E:soundPlay("emdgobrrr",0,"gsgtrainsounds/wheels/tractionmotor1_loud.wav") #Its literally silent when no "_loud" lmao
+    E:soundPlay("youseeme",0,"gsgtrainsounds/misc/train_wheels_welded_loop.wav")
+        
+    }
+    
+    #Rolling
+    
+    soundPitch("youseeme",PitchMul*Speed)  
+      
+    #Motor
+    soundPitch("emdgobrrr",PitchMul*Speed)
+    soundVolume("emdgobrrr",MotorVolume)
+
+#
