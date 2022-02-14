@@ -1,0 +1,108 @@
+@name Workable Eurofima Fiat Wheels Thing (By AZ)
+@inputs [Locomotive,Eurofima_fiat]:entity
+#@outputs 
+@persist [E,Bogie]:entity [WheelModel,CurveSound]:string PitchMul MotorVolume VelL Roll Speed 
+@trigger none
+
+#Started At: 10:26PM - 12:07AM - 0:00PM |
+#Time: PM EST 2/13-14/21
+
+E = Eurofima_fiat
+Bogie = E
+interval(100)
+if(first()|dupefinished()){
+    
+E:setSubMaterial(1,"")
+
+#
+
+WheelModel = "models/anytrains/props/locoparts/axle_40_rsg.mdl"
+PitchMul = 0.16
+MotorVolume = 0.5
+CurveSound = "priority's sounds/wheels/flange2.wav"
+#Use "_jazzlok/brakes/flange_loop.wav" if it doesn't really sound good enough when the curves passes by. 
+
+#
+
+    A = 0
+    holoCreate(A)
+    holoParent(A,E)
+    holoModel(A,WheelModel)
+    holoScale(A,vec(1,0.9,0.9))
+    holoAng(A,E:toWorld(ang(0,0,0)))
+    holoPos(A,E:toWorld(vec(0,-50.5,-0.45)))
+    holoColor(A,vec(255))
+
+    A = 1
+    holoCreate(A)
+    holoParent(A,E)
+    holoModel(A,WheelModel)
+    holoScale(A,vec(1,0.9,0.9))
+    holoAng(A,E:toWorld(ang(0,0,0)))
+    holoPos(A,E:toWorld(vec(0,50.5,-0.45)))
+    holoColor(A,vec(255))
+
+}
+
+#
+    
+    Roll = E:velL():y()/-4.25
+    VelL+=Roll
+    
+    holoAng(0,E:toWorld(ang(0,0,Roll)))
+    holoAng(1,E:toWorld(ang(0,0,Roll)))
+    
+#
+    
+    Speed = E:vel():length()
+    
+    Angle2 = Locomotive:angles():yaw()   
+
+    Angle = Bogie:angles():yaw()   
+
+    Total = round(Angle - Angle2)
+
+    if((Total <= -2 & Total >= -358) | Total >= 2)
+    {
+        Sound = 1
+    }
+    elseif(Total == 0 | Total <= 1 | Total >= -1 | Total <= -359)
+    {
+    Sound = 0
+    }
+
+    soundVolume("noise",(Speed / 600) * 0.5)
+
+
+    if(changed(Sound) & Sound)
+    {
+    
+    E:soundPlay("noise",0,CurveSound)
+    
+    }
+
+    if(!Sound)
+    {
+    soundVolume("noise",0)
+    soundStop("noise")
+    }
+
+    if(changed(Sound) & !Sound)
+    {
+    E:soundPlay("noise2",0,"_jazzlok/brakes/flange_stop.wav")
+    soundStop("noise2",1.5)
+    }
+    soundVolume("noise2",(Speed / 600) * 0.5)    
+        
+    soundPitch("noise",100 + (Speed / 200))
+    soundPitch("noise2",100 + (Speed / 200))
+
+    #Rolling
+    
+    soundPitch("youseeme",PitchMul*Speed)  
+      
+    #Motor
+    soundPitch("emdgobrrr",PitchMul*Speed)
+    soundVolume("emdgobrrr",MotorVolume)
+
+#
