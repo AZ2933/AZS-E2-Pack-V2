@@ -145,7 +145,7 @@ if(Gauge == 0){
         
     E:soundPlay("emdgobrrr",0,"gsgtrainsounds/wheels/tractionmotor1_loud.wav") #Its literally silent when no "_loud" lmao
     E:soundPlay("youseeme",0,"gsgtrainsounds/misc/train_wheels_welded_loop.wav")
-        
+    
     }
     
     #Rolling
