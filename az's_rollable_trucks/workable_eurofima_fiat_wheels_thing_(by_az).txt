@@ -42,7 +42,198 @@ CurveSound = "priority's sounds/wheels/flange2.wav"
     holoPos(A,E:toWorld(vec(0,50.5,-0.45)))
     holoColor(A,vec(255))
 
+}@name Workable Eurofima Fiat Wheels Thing (By AZ)
+@inputs [Locomotive,Eurofima_fiat]:entity
+#@outputs 
+@persist [E,Bogie]:entity [WheelModel,CurveSound,BaseModel]:string 
+@persist PitchMul MotorVolume VelL Roll Speed Angle Angle2 Total Sound 
+@trigger none
+
+#Started At: 10:26PM - 12:07AM | 7:30PM - 9:51PM |
+#Time: EST 2/13-14/21
+#Reminder: flange sound KINDA works :/ 
+
+E = Eurofima_fiat
+Bogie = Eurofima_fiat
+interval(100)
+if(first()|dupefinished()){
+
+E:setAlpha(0)
+
+#
+
+BaseModel = "models/rusty/trucks/eurofima_fiat.mdl"
+WheelModel = "models/anytrains/props/locoparts/axle_40_rsg.mdl"
+PitchMul = 0.16
+MotorVolume = 0.5
+CurveSound = "priority's sounds/wheels/flange2.wav"
+#Use "_jazzlok/brakes/flange_loop.wav" if it doesn't really sound good enough when the curves passes by. 
+
+#
+
+    A = 0
+    holoCreate(A)
+    holoParent(A,E)
+    holoModel(A,WheelModel)
+    holoScale(A,vec(1,0.9,0.9))
+    holoAng(A,E:toWorld(ang(0,0,0)))
+    holoPos(A,E:toWorld(vec(0,-50.5,-0.45)))
+    holoColor(A,vec(255))
+
+    A = 1
+    holoCreate(A)
+    holoParent(A,E)
+    holoModel(A,WheelModel)
+    holoScale(A,vec(1,0.9,0.9))
+    holoAng(A,E:toWorld(ang(0,0,0)))
+    holoPos(A,E:toWorld(vec(0,50.5,-0.45)))
+    holoColor(A,vec(255))
+
+#
+#Sides
+
+#Right
+    A = 2
+    holoCreate(A)
+    holoParent(A,E)
+    holoModel(A,BaseModel)
+    holoScale(A,vec(1))
+    holoAng(A,E:toWorld(ang(0,0,0)))
+    holoPos(A,E:toWorld(vec(0,0,0)))
+    holoColor(A,vec(255))
+    holoEntity(A):setSubMaterial(1,E:getSubMaterial(1))
+    holoEntity(A):setSubMaterial(2,E:getSubMaterial(2))
+    holoEntity(A):setSubMaterial(3,"magtrains/invisible")
+    holoEntity(A):setSubMaterial(4,"magtrains/invisible")
+    holoEntity(A):setSubMaterial(5,E:getSubMaterial(5))
+    holoEntity(A):setSubMaterial(6,"magtrains/invisible")
+    holoEntity(A):setSubMaterial(7,"magtrains/invisible")
+    holoClipEnabled(A,1)
+    holoClip(A,1,vec(23.8,0,0),vec(1,0,0),0)
+    holoBodygroup(A,1,E:getBodygroup(1))
+    holoBodygroup(A,2,E:getBodygroup(2))
+    holoBodygroup(A,3,E:getBodygroup(3))
+
+#Left
+    A = 3
+    holoCreate(A)
+    holoParent(A,E)
+    holoModel(A,BaseModel)
+    holoScale(A,vec(1))
+    holoAng(A,E:toWorld(ang(0,0,0)))
+    holoPos(A,E:toWorld(vec(0,0,0)))
+    holoColor(A,vec(255))
+    holoEntity(A):setSubMaterial(1,E:getSubMaterial(1))
+    holoEntity(A):setSubMaterial(2,E:getSubMaterial(2))
+    holoEntity(A):setSubMaterial(3,"magtrains/invisible")
+    holoEntity(A):setSubMaterial(4,"magtrains/invisible")
+    holoEntity(A):setSubMaterial(5,E:getSubMaterial(5))
+    holoEntity(A):setSubMaterial(6,"magtrains/invisible")
+    holoEntity(A):setSubMaterial(7,"magtrains/invisible")
+    holoClipEnabled(A,1)
+    holoClip(A,1,vec(-23.8,0,0),vec(-1,0,0),0)
+    holoBodygroup(A,1,E:getBodygroup(1))
+    holoBodygroup(A,2,E:getBodygroup(2))
+    holoBodygroup(A,3,E:getBodygroup(3))
+
+#
+#Middle 
+
+    A = 4
+    holoCreate(A)
+    holoParent(A,E)
+    holoModel(A,BaseModel)
+    holoScale(A,vec(1))
+    holoAng(A,E:toWorld(ang(0,0,0)))
+    holoPos(A,E:toWorld(vec(0,0,0)))
+    holoColor(A,vec(255))
+    holoEntity(A):setSubMaterial(1,E:getSubMaterial(1))
+    holoEntity(A):setSubMaterial(2,E:getSubMaterial(2))
+    holoEntity(A):setSubMaterial(3,"magtrains/invisible")
+#    holoEntity(A):setSubMaterial(4,"magtrains/invisible")
+    holoEntity(A):setSubMaterial(5,E:getSubMaterial(5))
+    holoEntity(A):setSubMaterial(6,"magtrains/invisible")
+    holoEntity(A):setSubMaterial(7,"magtrains/invisible")
+    holoClipEnabled(A,1,1)
+    holoClipEnabled(A,2,1)
+    holoClip(A,1,vec(23.8,0,0),vec(-1,0,0),0)
+    holoClip(A,2,vec(-23.8,0,0),vec(1,0,0),0)
+    holoBodygroup(A,1,E:getBodygroup(1))
+    holoBodygroup(A,2,E:getBodygroup(2))
+    holoBodygroup(A,3,E:getBodygroup(3))
+
 }
+
+#
+    
+    VelL = E:velL():y()/-4.25
+    Roll+=VelL
+    
+    holoAng(0,E:toWorld(ang(0,0,Roll)))
+    holoAng(1,E:toWorld(ang(0,0,Roll)))
+    
+#
+    
+    Speed = E:vel():length()
+    
+    Angle2 = Locomotive:angles():yaw()   
+
+    Angle = Bogie:angles():yaw()   
+
+    Total = round(Angle - Angle2)
+
+    if((Total == -2 & Total >= -358) | Total >= 2)
+    {
+        Sound = 1
+    }
+    elseif(Total <= 0 | Total <= 1 | Total >= -1 | Total < -359)
+    {
+        Sound = 0
+    }
+
+    soundVolume("noise",(Speed / 600) * 0.5)
+
+
+    if(changed(Sound) & Sound)
+    {
+    
+    E:soundPlay("noise",0,CurveSound)
+    
+    }
+
+    if(!Sound)
+    {
+    soundVolume("noise",0)
+    soundStop("noise")
+    }
+
+    if(changed(!Sound) & !Sound)
+    {
+    E:soundPlay("noise2",0,"_jazzlok/brakes/flange_stop.wav")
+    soundStop("noise2",1.5)
+    }
+    soundVolume("noise2",(Speed / 600) * 0.5)    
+        
+    soundPitch("noise",100 + (Speed / 200))
+#    soundPitch("noise2",100 + (Speed / 200))
+ 
+    if(first()|dupefinished()){
+        
+    E:soundPlay("emdgobrrr",0,"gsgtrainsounds/wheels/tractionmotor1_loud.wav") #Its literally silent when no "_loud" lmao
+    E:soundPlay("youseeme",0,"gsgtrainsounds/misc/train_wheels_welded_loop.wav")
+        
+    }
+    
+    #Rolling
+    
+    soundPitch("youseeme",PitchMul*Speed)  
+      
+    #Motor
+    soundPitch("emdgobrrr",PitchMul*Speed)
+    soundVolume("emdgobrrr",MotorVolume)
+
+#
+
 
 #
     
