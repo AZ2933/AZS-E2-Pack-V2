@@ -284,7 +284,7 @@ CurveSound = "priority's sounds/wheels/flange2.wav"
     soundStop("noise2",1.5)
     }
     soundVolume("noise2",(Speed / 600) * 0.5)    
-        
+    
     soundPitch("noise",100 + (Speed / 200))
     soundPitch("noise2",100 + (Speed / 200))
 
