@@ -1,0 +1,159 @@
+@name Workable DLMB Wheels Thing (By AZ)
+@inputs [Locomotive,DLMB]:entity
+#@outputs 
+@persist [E,Bogie]:entity [WheelRSGModel,CurveSound,WheelPHXModel]:string PitchMul MotorVolume Gauge VelL Roll
+@trigger none
+
+#Started At: 11:08 - 11:44 | 5:15 - 5:33 |
+#Time: PM EST 2/14-15/21
+
+E = DLMB
+Bogie = DLMB
+interval(100)
+if(first()|dupefinished()){
+
+E:setSubMaterial(2,"models/proppertextures/invisible")
+E:setSubMaterial(5,"models/proppertextures/invisible")
+E:setSubMaterial(6,"models/proppertextures/invisible")
+
+#
+
+Gauge = 0
+#0 = RSG
+#1 = PHX
+WheelRSGModel = "models/anytrains/props/locoparts/axle_40_rsg.mdl"
+WheelPHXModel = "models/anytrains/props/locoparts/axle_40_phx.mdl"
+PitchMul = 0.2
+MotorVolume = 0.5
+CurveSound = "priority's sounds/wheels/flange2.wav"
+#Use "_jazzlok/brakes/flange_loop.wav" if it doesn't really sound good enough when the curves passes by. 
+
+#
+
+    A = 0
+    holoCreate(A)
+    holoParent(A,E)
+    holoModel(A,WheelRSGModel)
+    holoScale(A,vec(1))
+    holoAng(A,E:toWorld(ang(0,0,0)))
+    holoPos(A,E:toWorld(vec(0,-47,-17.65)))
+    holoColor(A,vec(255))
+
+    A = 1
+    holoCreate(A)
+    holoParent(A,E)
+    holoModel(A,WheelRSGModel)
+    holoScale(A,vec(1))
+    holoAng(A,E:toWorld(ang(0,0,0)))
+    holoPos(A,E:toWorld(vec(0,47,-17.65)))
+    holoColor(A,vec(255))
+
+    A = 2
+    holoCreate(A)
+    holoParent(A,E)
+    holoModel(A,WheelPHXModel)
+    holoScale(A,vec(1))
+    holoAng(A,E:toWorld(ang(0,0,0)))
+    holoPos(A,E:toWorld(vec(0,-47,-17.65)))
+    holoColor(A,vec(255))
+
+    A = 3
+    holoCreate(A)
+    holoParent(A,E)
+    holoModel(A,WheelPHXModel)
+    holoScale(A,vec(1))
+    holoAng(A,E:toWorld(ang(0,0,0)))
+    holoPos(A,E:toWorld(vec(0,47,-17.65)))
+    holoColor(A,vec(255))
+
+if(Gauge == 0){
+    
+    holoAlpha(0,255)
+    holoAlpha(1,255)
+    holoAlpha(2,0)
+    holoAlpha(3,0)
+    
+}elseif(Gauge == 1){
+      
+    holoAlpha(0,0)
+    holoAlpha(1,0)
+    holoAlpha(2,255)
+    holoAlpha(3,255)
+    
+}
+
+}
+
+#
+    
+    VelL = E:velL():y()/-4.25
+    Roll+=VelL
+    
+    holoAng(0,E:toWorld(ang(0,0,Roll)))
+    holoAng(1,E:toWorld(ang(0,0,Roll)))
+    holoAng(2,E:toWorld(ang(0,0,Roll)))
+    holoAng(3,E:toWorld(ang(0,0,Roll)))
+
+#
+
+    Speed = E:vel():length()
+
+    Angle2 = Locomotive:angles():yaw()   
+
+    Angle = Bogie:angles():yaw()   
+
+    Total = round(Angle - Angle2)
+
+    if((Total <= -2 & Total >= -358) | Total >= 2)
+    {
+        Sound = 1
+    }
+    elseif(Total == 0 | Total <= 1 | Total >= -1 | Total <= -359)
+    {
+    Sound = 0
+    }
+
+    soundVolume("noise",(Speed / 600) * 0.5)
+
+
+    if(changed(Sound) & Sound)
+    {
+    
+    E:soundPlay("noise",0,CurveSound)
+    
+    }
+
+    if(!Sound)
+    {
+    soundVolume("noise",0)
+    soundStop("noise")
+    }
+
+    if(changed(Sound) & !Sound)
+    {
+    E:soundPlay("noise2",0,"_jazzlok/brakes/flange_stop.wav")
+    soundStop("noise2",1.5)
+    }
+    soundVolume("noise2",(Speed / 600) * 0.5)    
+        
+    soundPitch("noise",100 + (Speed / 200))
+    soundPitch("noise2",100 + (Speed / 200))
+
+#
+  
+    if(first()|dupefinished()){
+        
+    E:soundPlay("emdgobrrr",0,"gsgtrainsounds/wheels/tractionmotor1_loud.wav") #Its literally silent when no "_loud" lmao
+    E:soundPlay("youseeme",0,"gsgtrainsounds/misc/train_wheels_welded_loop.wav")
+        
+    }
+    
+    #Rolling
+    
+    soundPitch("youseeme",PitchMul*Speed)  
+      
+    #Motor
+    soundPitch("emdgobrrr",PitchMul*Speed)
+    soundVolume("emdgobrrr",MotorVolume)
+
+#
