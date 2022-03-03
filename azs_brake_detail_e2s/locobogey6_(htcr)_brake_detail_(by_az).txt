@@ -1,0 +1,322 @@
+@name LocoBogey6 (HTCR) Brake Detail (By AZ)
+@inputs LocoBogey6:entity
+#@outputs 
+@persist [E,E1,E2,E3,E4,E5]:entity [CylModel,BrakePusherModel,BrakeTurnModel,BrakeShoeModel,BrakeShoeTexture]:string
+@persist [BrakeShoeHolderModel]:string [E6,E7,E8,E9,E10,E11,E12,E13,E14,E15,E16,E17,E18,E19,E20]:entity
+@trigger none 
+
+#Started At: 4:43 - 7:15 | 10:04 - 10:35 |
+#Time: PM EST 2/24/22    -    3/2/22     |
+
+E = LocoBogey6
+if(first()|dupefinished()){
+
+#
+
+CylModel = "models/zexciv_train_stuff/details/brakeparts/brake_cylinder.mdl"
+BrakePusherModel = "models/unionslocos/parts/brake_kit_1b.mdl"
+BrakeTurnModel = "models/unionslocos/parts/brake_kit_1c.mdl"
+BrakeShoeModel = "models/unionslocos/parts/brake_kit_1d.mdl"
+BrakeShoeHolderModel = "models/unionslocos/parts/brake_kit_1e.mdl"
+BrakeShoeTexture = "models/proppertextures/enamel_black"
+
+#
+#1st Front Left Cylinder
+
+    A = 0
+    holoCreate(A)
+    holoParent(A,E)
+    holoModel(A,CylModel)
+    holoScale(A,vec(1))
+    holoAng(A,E:toWorld(ang(0,90,0)))
+    holoPos(A,E:toWorld(vec(55.35,-72.5,-12)))
+    holoColor(A,vec(255))
+    
+    E1 = holoEntity(0)
+    
+    A = 1
+    holoCreate(A)
+    holoParent(A,E1)
+    holoModel(A,BrakePusherModel)
+    holoScale(A,vec(0.8))
+    holoAng(A,E1:toWorld(ang(0,90,0)))
+    holoPos(A,E1:toWorld(vec(5.6,0,0)))
+    holoColor(A,vec(255))
+    holoClipEnabled(A,1)
+    holoClip(A,1,vec(0,0,0),vec(0,-1,0),0)
+    
+    E2 = holoEntity(1)
+    
+    A = 2
+    holoCreate(A)
+    holoParent(A,E2)
+    holoModel(A,BrakeTurnModel)
+    holoScale(A,vec(0.8,0.8,0.81))
+    holoAng(A,E2:toWorld(ang(0,180,0)))
+    holoPos(A,E2:toWorld(vec(6.9057,-17.563,-0.06)))
+    holoColor(A,vec(255))
+    
+    E3 = holoEntity(2)
+    
+    A = 3
+    holoCreate(A)
+    holoParent(A,E3)
+    holoModel(A,BrakeShoeModel)
+    holoScale(A,vec(0.8))
+    holoAng(A,E3:toWorld(ang(0,180,0)))
+    holoPos(A,E3:toWorld(vec(-7.82,-0.05,-3.5)))
+    holoColor(A,vec(255))
+    holoMaterial(A,BrakeShoeTexture)
+    
+    E4 = holoEntity(3)
+    
+    A = 4
+    holoCreate(A)
+    holoParent(A,E4)
+    holoModel(A,BrakeShoeHolderModel)
+    holoScale(A,vec(0.8))
+    holoAng(A,E4:toWorld(ang(0,0,0)))
+    holoPos(A,E4:toWorld(vec(0.1,-11.2,-21.58)))
+    holoColor(A,vec(255))
+    holoAlpha(A,255)
+    holoMaterial(A,BrakeShoeTexture)
+    holoAlpha(A,0)
+    
+    E5 = holoEntity(4)
+    
+    A = 5
+    holoCreate(A)
+    holoParent(A,E5)
+    holoModel(A,BrakeShoeModel)
+    holoScale(A,vec(0.8))
+    holoAng(A,E5:toWorld(ang(0,180,0)))
+    holoPos(A,E5:toWorld(vec(0.095,-11.2,21.58)))
+    holoColor(A,vec(255))
+    holoMaterial(A,BrakeShoeTexture)
+
+#
+#2nd Front Left Cylinder
+
+    A = 6
+    holoCreate(A)
+    holoParent(A,E)
+    holoModel(A,CylModel)
+    holoScale(A,vec(1))
+    holoAng(A,E:toWorld(ang(0,90,0)))
+    holoPos(A,E:toWorld(vec(55.35,3.7,-12)))
+    holoColor(A,vec(255))
+    
+    E6 = holoEntity(6)
+    
+    A = 7
+    holoCreate(A)
+    holoParent(A,E6)
+    holoModel(A,BrakePusherModel)
+    holoScale(A,vec(0.8))
+    holoAng(A,E6:toWorld(ang(0,90,0)))
+    holoPos(A,E6:toWorld(vec(5.6,0,0)))
+    holoColor(A,vec(255))
+    holoClipEnabled(A,1)
+    holoClip(A,1,vec(0,0,0),vec(0,-1,0),0)
+    
+    E7 = holoEntity(7)
+    
+    A = 8
+    holoCreate(A)
+    holoParent(A,E7)
+    holoModel(A,BrakeTurnModel)
+    holoScale(A,vec(0.8,0.8,0.81))
+    holoAng(A,E7:toWorld(ang(0,180,0)))
+    holoPos(A,E7:toWorld(vec(6.9057,-17.563,-0.06)))
+    holoColor(A,vec(255))
+    
+    E8 = holoEntity(8)
+    
+    A = 9
+    holoCreate(A)
+    holoParent(A,E8)
+    holoModel(A,BrakeShoeModel)
+    holoScale(A,vec(0.8))
+    holoAng(A,E8:toWorld(ang(0,180,0)))
+    holoPos(A,E8:toWorld(vec(-7.82,-0.05,-3.5)))
+    holoColor(A,vec(255))
+    holoMaterial(A,BrakeShoeTexture)
+    
+    E9 = holoEntity(9)
+    
+    A = 10
+    holoCreate(A)
+    holoParent(A,E9)
+    holoModel(A,BrakeShoeHolderModel)
+    holoScale(A,vec(0.8))
+    holoAng(A,E9:toWorld(ang(0,0,0)))
+    holoPos(A,E9:toWorld(vec(0.1,-11.2,-21.58)))
+    holoColor(A,vec(255))
+    holoAlpha(A,255)
+    holoMaterial(A,BrakeShoeTexture)
+    holoAlpha(A,0)
+    
+    E10 = holoEntity(10)
+    
+    A = 11
+    holoCreate(A)
+    holoParent(A,E10)
+    holoModel(A,BrakeShoeModel)
+    holoScale(A,vec(0.8))
+    holoAng(A,E10:toWorld(ang(0,180,0)))
+    holoPos(A,E10:toWorld(vec(0.095,-11.2,21.58)))
+    holoColor(A,vec(255))
+    holoMaterial(A,BrakeShoeTexture) 
+
+#------------------------------------------------------------#
+
+#
+#1st Front Right Cylinder
+
+    A = 12
+    holoCreate(A)
+    holoParent(A,E)
+    holoModel(A,CylModel)
+    holoScale(A,vec(1))
+    holoAng(A,E:toWorld(ang(0,90,0)))
+    holoPos(A,E:toWorld(vec(-55.35,-72.5,-12)))
+    holoColor(A,vec(255))
+    
+    E11 = holoEntity(12)
+    
+    A = 13
+    holoCreate(A)
+    holoParent(A,E11)
+    holoModel(A,BrakePusherModel)
+    holoScale(A,vec(0.8))
+    holoAng(A,E11:toWorld(ang(0,90,0)))
+    holoPos(A,E11:toWorld(vec(5.6,0,0)))
+    holoColor(A,vec(255))
+    holoClipEnabled(A,1)
+    holoClip(A,1,vec(0,0,0),vec(0,-1,0),0)
+    
+    E12 = holoEntity(13)
+    
+    A = 14
+    holoCreate(A)
+    holoParent(A,E12)
+    holoModel(A,BrakeTurnModel)
+    holoScale(A,vec(0.8,0.8,0.81))
+    holoAng(A,E12:toWorld(ang(0,0,0)))
+    holoPos(A,E12:toWorld(vec(-6.9057,-17.563,-0.06)))
+    holoColor(A,vec(255))
+    
+    E13 = holoEntity(14)
+    
+    A = 15
+    holoCreate(A)
+    holoParent(A,E13)
+    holoModel(A,BrakeShoeModel)
+    holoScale(A,vec(0.8))
+    holoAng(A,E13:toWorld(ang(0,0,0)))
+    holoPos(A,E13:toWorld(vec(-7.82,-0.05,-3.5)))
+    holoColor(A,vec(255))
+    holoMaterial(A,BrakeShoeTexture)
+    
+    E14 = holoEntity(15)
+    
+    A = 16
+    holoCreate(A)
+    holoParent(A,E14)
+    holoModel(A,BrakeShoeHolderModel)
+    holoScale(A,vec(0.8))
+    holoAng(A,E14:toWorld(ang(0,0,0)))
+    holoPos(A,E14:toWorld(vec(0.1,-11.2,-21.58)))
+    holoColor(A,vec(255))
+    holoAlpha(A,255)
+    holoMaterial(A,BrakeShoeTexture)
+    holoAlpha(A,0)
+    
+    E15 = holoEntity(16)
+    
+    A = 17
+    holoCreate(A)
+    holoParent(A,E15)
+    holoModel(A,BrakeShoeModel)
+    holoScale(A,vec(0.8))
+    holoAng(A,E15:toWorld(ang(0,180,0)))
+    holoPos(A,E15:toWorld(vec(0.095,-11.2,21.58)))
+    holoColor(A,vec(255))
+    holoMaterial(A,BrakeShoeTexture)
+
+#
+#2st Front Right Cylinder
+
+    A = 18
+    holoCreate(A)
+    holoParent(A,E)
+    holoModel(A,CylModel)
+    holoScale(A,vec(1))
+    holoAng(A,E:toWorld(ang(0,90,0)))
+    holoPos(A,E:toWorld(vec(-55.35,3.7,-12)))
+    holoColor(A,vec(255))
+    
+    E16 = holoEntity(18)
+    
+    A = 19
+    holoCreate(A)
+    holoParent(A,E16)
+    holoModel(A,BrakePusherModel)
+    holoScale(A,vec(0.8))
+    holoAng(A,E16:toWorld(ang(0,90,0)))
+    holoPos(A,E16:toWorld(vec(5.6,0,0)))
+    holoColor(A,vec(255))
+    holoClipEnabled(A,1)
+    holoClip(A,1,vec(0,0,0),vec(0,-1,0),0)
+    
+    E17 = holoEntity(19)
+    
+    A = 20
+    holoCreate(A)
+    holoParent(A,E17)
+    holoModel(A,BrakeTurnModel)
+    holoScale(A,vec(0.8,0.8,0.81))
+    holoAng(A,E17:toWorld(ang(0,0,0)))
+    holoPos(A,E17:toWorld(vec(-6.9057,-17.563,-0.06)))
+    holoColor(A,vec(255))
+    
+    E18 = holoEntity(20)
+    
+    A = 21
+    holoCreate(A)
+    holoParent(A,E18)
+    holoModel(A,BrakeShoeModel)
+    holoScale(A,vec(0.8))
+    holoAng(A,E18:toWorld(ang(0,0,0)))
+    holoPos(A,E18:toWorld(vec(-7.82,-0.05,-3.5)))
+    holoColor(A,vec(255))
+    holoMaterial(A,BrakeShoeTexture)
+    
+    E19 = holoEntity(21)
+    
+    A = 22
+    holoCreate(A)
+    holoParent(A,E19)
+    holoModel(A,BrakeShoeHolderModel)
+    holoScale(A,vec(0.8))
+    holoAng(A,E19:toWorld(ang(0,0,0)))
+    holoPos(A,E19:toWorld(vec(0.1,-11.2,-21.58)))
+    holoColor(A,vec(255))
+    holoAlpha(A,255)
+    holoMaterial(A,BrakeShoeTexture)
+    holoAlpha(A,0)
+    
+    E20 = holoEntity(22)
+    
+    A = 23
+    holoCreate(A)
+    holoParent(A,E20)
+    holoModel(A,BrakeShoeModel)
+    holoScale(A,vec(0.8))
+    holoAng(A,E20:toWorld(ang(0,180,0)))
+    holoPos(A,E20:toWorld(vec(0.095,-11.2,21.58)))
+    holoColor(A,vec(255))
+    holoMaterial(A,BrakeShoeTexture)
+#
+}
+#
