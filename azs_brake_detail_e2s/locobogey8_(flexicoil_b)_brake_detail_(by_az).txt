@@ -1,0 +1,108 @@
+@name LocoBogey8 (Flexicoil B) Brake Detail (By AZ)
+@inputs Locobogey8:entity
+#@outputs 
+@persist [E,E1,E2,E3,E4]:entity [BrakePusherModel,BrakeTurnModel]:string
+@trigger none
+
+#Started At: 11:31PM - 12:11AM - 6:34PM - 6:49PM
+#Time: EST 3/         2   -   BDAY         /21
+
+E = Locobogey8
+if(first()|dupefinished()){
+
+#
+
+BrakePusherModel = "models/unionslocos/parts/brake_kit_1b.mdl"
+BrakeTurnModel = "models/unionslocos/parts/brake_kit_1c.mdl"
+
+#
+#Front Right Cylinder
+    A = 0
+    holoCreate(A)
+    holoParent(A,E)
+    holoModel(A,BrakePusherModel)
+    holoScale(A,vec(1))
+    holoAng(A,E:toWorld(ang(0,0,0)))
+    holoPos(A,E:toWorld(vec(54.1,45,-12)))
+    holoColor(A,vec(255))
+
+    A = 1
+    holoCreate(A)
+    holoParent(A,E)
+    holoModel(A,BrakeTurnModel)
+    holoScale(A,vec(1))
+    holoAng(A,E:toWorld(ang(0,0,0)))
+    holoPos(A,E:toWorld(vec(45.53,23.07,-12)))
+    holoColor(A,vec(255))
+    holoClipEnabled(A,1)
+    holoClip(A,1,vec(0,0,0),vec(1,0,0),0)
+#
+#Front Left Cylinder
+    A = 2
+    holoCreate(A)
+    holoParent(A,E)
+    holoModel(A,BrakePusherModel)
+    holoScale(A,vec(1))
+    holoAng(A,E:toWorld(ang(0,0,0)))
+    holoPos(A,E:toWorld(vec(-54.1,45,-12)))
+    holoColor(A,vec(255))
+
+    A = 3
+    holoCreate(A)
+    holoParent(A,E)
+    holoModel(A,BrakeTurnModel)
+    holoScale(A,vec(1))
+    holoAng(A,E:toWorld(ang(0,180,0)))
+    holoPos(A,E:toWorld(vec(-45.53,23.07,-12)))
+    holoColor(A,vec(255))
+    holoClipEnabled(A,1)
+    holoClip(A,1,vec(0,0,0),vec(1,0,0),0)
+
+#--------------------------------------------------#
+
+#
+#Back Right Cylinder
+    A = 4
+    holoCreate(A)
+    holoParent(A,E)
+    holoModel(A,BrakePusherModel)
+    holoScale(A,vec(1))
+    holoAng(A,E:toWorld(ang(0,180,0)))
+    holoPos(A,E:toWorld(vec(54.1,-45,-12)))
+    holoColor(A,vec(255))
+
+    A = 5
+    holoCreate(A)
+    holoParent(A,E)
+    holoModel(A,BrakeTurnModel)
+    holoScale(A,vec(1))
+    holoAng(A,E:toWorld(ang(0,0,0)))
+    holoPos(A,E:toWorld(vec(45.53,-23.07,-12)))
+    holoColor(A,vec(255))
+    holoClipEnabled(A,1)
+    holoClip(A,1,vec(0,0,0),vec(1,0,0),0)
+#
+#Back Left Cylinder
+    A = 6
+    holoCreate(A)
+    holoParent(A,E)
+    holoModel(A,BrakePusherModel)
+    holoScale(A,vec(1))
+    holoAng(A,E:toWorld(ang(0,180,0)))
+    holoPos(A,E:toWorld(vec(-54.1,-45,-12)))
+    holoColor(A,vec(255))
+
+    A = 7
+    holoCreate(A)
+    holoParent(A,E)
+    holoModel(A,BrakeTurnModel)
+    holoScale(A,vec(1))
+    holoAng(A,E:toWorld(ang(0,180,0)))
+    holoPos(A,E:toWorld(vec(-45.53,-23.07,-12)))
+    holoColor(A,vec(255))
+    holoClipEnabled(A,1)
+    holoClip(A,1,vec(0,0,0),vec(1,0,0),0)
+
+}
+
+#
