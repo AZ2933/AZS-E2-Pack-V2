@@ -5,8 +5,8 @@
 @persist [BrakeTurnHolderModel,BrakeTexture2,BrakeShoe2HolderModel]:string 
 @trigger none
 
-#Started At: 4:40 - 11:58 | 10:02 - 11:35 | 4:57PM - 1:02AM | 7:42PM - 11:58PM | 6:30 - 7:46 |
-#Time: PM EST 3/9        -        10     -    12   -  13      -      17       -      20  /22 |
+#Started At: 4:40 - 11:58 | 10:02 - 11:35 | 4:57PM - 1:02AM | 7:42PM - 11:58PM | 6:30 - 7:46 | 6:49 - 6:51 |
+#Time: PM EST 3/9        -        10     -    12   -  13      -      17       -      20       -      26/22 |
 
 E = Locobogey4
 if(first()|dupefinished()){
@@ -31,7 +31,7 @@ BrakeShoe2HolderModel = "models/holograms/hq_rcube_thin.mdl"
     holoParent(A,E)
     holoModel(A,BrakeCylModel)
     holoScale(A,vec(1))
-    holoAng(A,E:toWorld(ang(0,90,0)))
+    holoAng(A,E:toWorld(ang(0,90,-90)))
     holoPos(A,E:toWorld(vec(56.25,-76,-7)))
     holoColor(A,vec(255))
 
@@ -150,7 +150,7 @@ BrakeShoe2HolderModel = "models/holograms/hq_rcube_thin.mdl"
     holoParent(A,E)
     holoModel(A,BrakeCylModel)
     holoScale(A,vec(1))
-    holoAng(A,E:toWorld(ang(0,-90,0)))
+    holoAng(A,E:toWorld(ang(0,-90,90)))
     holoPos(A,E:toWorld(vec(56.25,76,-7)))
     holoColor(A,vec(255))
 
@@ -269,7 +269,7 @@ BrakeShoe2HolderModel = "models/holograms/hq_rcube_thin.mdl"
     holoParent(A,E)
     holoModel(A,BrakeCylModel)
     holoScale(A,vec(1))
-    holoAng(A,E:toWorld(ang(0,90,0)))
+    holoAng(A,E:toWorld(ang(0,90,90)))
     holoPos(A,E:toWorld(vec(-56.25,-76,-7)))
     holoColor(A,vec(255))
 
@@ -388,7 +388,7 @@ BrakeShoe2HolderModel = "models/holograms/hq_rcube_thin.mdl"
     holoParent(A,E)
     holoModel(A,BrakeCylModel)
     holoScale(A,vec(1))
-    holoAng(A,E:toWorld(ang(0,-90,0)))
+    holoAng(A,E:toWorld(ang(0,-90,-90)))
     holoPos(A,E:toWorld(vec(-56.25,76,-7)))
     holoColor(A,vec(255))
 
