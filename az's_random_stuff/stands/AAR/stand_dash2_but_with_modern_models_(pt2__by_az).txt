@@ -1,0 +1,312 @@
+@name Stand Dash2 But With Modern Models (PT2 | By AZ)
+@inputs [Stand_dash2,RLCPT]:entity CtlTable:table MU_Master BrakeCutIn Quill Blast BellToggle LightToggle MiscToggle
+@outputs CONSTRAINT Bell Light Misc 
+@outputs Rev Not Dy Dn AT EQ ID CutIn Qui Bla 
+@persist [E]:entity [BaseModel,ControlPlateModel,LocoBrakeModel,AutoBrakeModel,InvisibleMat,HornModel,BellOn,BellOff,LightSound]:string [CTLT]:table [RLCPTW]:wirelink
+@persist Dir Thr Dyn AB LB B Reverser Notch Dynamics DynaNotch ABrake ABrakePSI LBrake BCI [TrainMetal2Mat,TrainMetal1Mat,TrainMetal5Mat,CabMetalGray]:string Bleed
+#@trigger none
+
+#Started At: 6:11 - 10:47
+#Time: PM EST 11/11/22
+
+if(first()|dupefinished()){
+
+#Other shit
+CONSTRAINT = 1
+E = Stand_dash2
+E:setAlpha(0)
+CTLT = CtlTable
+RLCPTW = RLCPT:wirelink()
+#interval(100)
+
+#----------------------------------------------------------------------#
+    #Table Lables
+    
+Reverser = CTLT["SetReverser",number]
+Notch = CTLT["SetThrottle",number] 
+Dynamics = CTLT["SetDynamics",number] 
+DynaNotch = RLCPTW["DynaNotch",number]
+ABrake = CTLT["SetBrakeNotch",number]
+ABrakePSI = CTLT["SetEqualRes",number]
+LBrake = CTLT["SetLocoBrakePressure",number]
+Bleed = CTLT["SetBleeding",number]
+
+#----------------------------------------------------------------------#
+    #Output Lables
+    
+Rev=Reverser
+Not=Notch 
+Dy=Dynamics
+Dn=DynaNotch 
+AT=ABrake
+EQ=ABrakePSI
+ID=LBrake
+CutIn=BrakeCutIn
+Qui=Quill
+Bla=Blast
+
+#----------------------------------------------------------------------#
+    #Models
+
+BaseModel = "models/magtrainslocos/controlstands/stand_dash2.mdl"
+ControlPlateModel = "models/rlc_delta_lua/cstands/aar_control_plate.mdl"
+LocoBrakeModel = "models/rlc_delta_lua/cstands/26l_independent.mdl"
+AutoBrakeModel = "models/rlc_delta_lua/cstands/26l_automatic.mdl"
+HornModel = "models/sps_pack/detail/jhook_hornvalve.mdl"
+#----------------------------------------------------------------------#
+    #Sounds
+    
+    BellOn = "gsgtrainsounds/misc/air_on.wav"
+    BellOff = "gsgtrainsounds/misc/air_off.wav"
+    LightSound = "buttons/lightswitch2.wav"
+    
+#----------------------------------------------------------------------#
+    #Extras
+    
+    InvisibleMat = "magtrains/invisible"
+    TrainMetal2Mat = "models/magtrainslocos/train_metal2"
+    TrainMetal1Mat = "models/magtrainslocos/train_metal1"
+    TrainMetal5Mat = "models/magtrainslocos/train_metal5"
+    CabMetalGray = "models/magtrainslocos/cabmetal_gray"
+
+#----------------------------------------------------------------------#
+    #Stand (R Side)
+
+    A = 0
+    holoCreate(A)
+    holoParent(A,E)
+    holoModel(A,BaseModel)
+    holoScale(A,vec(1))
+    holoAng(A,E:toWorld(ang(0,0,0)))
+    holoPos(A,E:toWorld(vec(0,0,0)))
+    holoColor(A,vec(255))
+    holoClipEnabled(A,1)
+    holoClip(A,1,vec(-3.7,0,0),vec(-1,0,0),0)
+    holoEntity(A):setSubMaterial(0,"") #Base
+    holoEntity(A):setSubMaterial(1,InvisibleMat)
+    holoEntity(A):setSubMaterial(2,"")
+    holoEntity(A):setSubMaterial(3,InvisibleMat)
+    holoEntity(A):setSubMaterial(4,"")
+    holoEntity(A):setSubMaterial(5,"")
+    holoEntity(A):setSubMaterial(6,"")
+    holoEntity(A):setSubMaterial(7,"")
+    
+    #L Side
+    A = 1
+    holoCreate(A)
+    holoParent(A,E)
+    holoModel(A,BaseModel)
+    holoScale(A,vec(1))
+    holoAng(A,E:toWorld(ang(0,0,0)))
+    holoPos(A,E:toWorld(vec(0,0,0)))
+    holoColor(A,vec(255))
+#    holoBodygroup(A,5,1)
+    holoClipEnabled(A,1)
+    holoClip(A,1,vec(-3.7,0,0),vec(1,0,0),0)
+    holoEntity(A):setSubMaterial(0,"") #Base
+    holoEntity(A):setSubMaterial(1,InvisibleMat)
+    holoEntity(A):setSubMaterial(2,"")
+    holoEntity(A):setSubMaterial(3,InvisibleMat)
+    holoEntity(A):setSubMaterial(4,"")
+    holoEntity(A):setSubMaterial(5,"")
+    holoEntity(A):setSubMaterial(6,"")
+    holoEntity(A):setSubMaterial(7,"")
+
+#----------------------------------------------------------------------#
+    #Plate
+    
+    A = 2
+    holoCreate(A)
+    holoParent(A,E)
+    holoModel(A,ControlPlateModel)
+    holoScale(A,vec(1))
+    holoAng(A,E:toWorld(ang(0,76,0)))
+    holoPos(A,E:toWorld(vec( -12, 11.98, 31.96875 )))
+    holoColor(A,vec(255))
+    holoMaterial(A,"")
+    holoEntity(A):setSubMaterial(0,"") #Base
+    holoEntity(A):setSubMaterial(1,TrainMetal2Mat)
+    holoEntity(A):setSubMaterial(2,"")
+    holoEntity(A):setSubMaterial(3,TrainMetal5Mat)
+    holoEntity(A):setSubMaterial(4,TrainMetal1Mat)
+    holoEntity(A):setSubMaterial(5,"")
+
+#----------------------------------------------------------------------#
+    #AutoB
+    
+    A = 3
+    holoCreate(A)
+    holoParent(A,E)
+    holoModel(A,AutoBrakeModel)
+    holoScale(A,vec(0.965))
+    holoAng(A,E:toWorld(ang(0,90,0)))
+    holoPos(A,E:toWorld(vec( 9, 9.01, 35.158 )))
+    holoColor(A,vec(255))
+    holoMaterial(A,"")
+    holoEntity(A):setSubMaterial(0,"") #Base
+    holoEntity(A):setSubMaterial(1,TrainMetal2Mat)
+    holoEntity(A):setSubMaterial(2,"")
+    holoEntity(A):setSubMaterial(3,"")
+    holoEntity(A):setSubMaterial(4,"")
+    holoEntity(A):setSubMaterial(5,TrainMetal1Mat)
+    holoEntity(A):setSubMaterial(6,TrainMetal1Mat)
+    holoEntity(A):setSubMaterial(7,"")
+
+#----------------------------------------------------------------------#
+    #LocoB
+    
+    A = 4
+    holoCreate(A)
+    holoParent(A,E)
+    holoModel(A,LocoBrakeModel)
+    holoScale(A,vec(1))
+    holoAng(A,E:toWorld(ang(0,90,0)))
+    holoPos(A,E:toWorld(vec( 8.8, 11.05, 24.1 )))
+    holoColor(A,vec(255))
+    holoMaterial(A,"")
+    holoEntity(A):setSubMaterial(0,"") #Base
+    holoEntity(A):setSubMaterial(1,TrainMetal2Mat)
+    holoEntity(A):setSubMaterial(2,TrainMetal1Mat)
+    holoEntity(A):setSubMaterial(3,"")
+    holoEntity(A):setSubMaterial(4,"")
+    holoEntity(A):setSubMaterial(5,"")
+    holoEntity(A):setSubMaterial(6,"")
+    holoEntity(A):setSubMaterial(7,"")
+    
+#----------------------------------------------------------------------#
+    #Horn
+    
+    A = 5
+    holoCreate(A)
+    holoParent(A,E)
+    holoModel(A,HornModel)
+    holoScale(A,vec(1))
+    holoAng(A,E:toWorld(ang(0,0,0)))
+    holoPos(A,E:toWorld(vec( 1.968750596046, 7.968749523163, 45.96875 )))
+    holoColor(A,vec(255))
+    holoMaterial(A,"")
+    holoEntity(A):setSubMaterial(0,"") #Base
+    holoEntity(A):setSubMaterial(1,CabMetalGray)
+    holoEntity(A):setSubMaterial(2,TrainMetal1Mat)
+    holoEntity(A):setSubMaterial(3,TrainMetal1Mat)
+    holoEntity(A):setSubMaterial(4,TrainMetal1Mat)
+
+}
+
+#----------------------------------------------------------------------#
+    #How the shit works
+    if(MU_Master){
+    
+    holoEntity(2):setBodygroup(1,1)
+    holoEntity(2):setBoneAngRelative(1,ang(33*Dir,0,0))
+    #
+    if(Dynamics){
+    holoEntity(2):setBoneAngRelative(2,ang((10.4*Dyn)+10.4,0,0))
+    }else{
+    holoEntity(2):setBoneAngRelative(2,ang(0,0,0))
+    }
+    #
+    holoEntity(2):setBoneAngRelative(3,ang((-0.777*Thr),0,0))
+    #
+    #[
+    #Im not doing the reverse part (EM to release), this is too much pain :/
+    if(ABrake == 0){
+    holoEntity(3):setBoneAngRelative(1,ang(0,0,0))
+    }elseif(ABrake == 1 & EQ == 84){
+    holoEntity(3):setBoneAngRelative(1,ang(AB*7.75,0,0))
+    }elseif(ABrake == 1 & EQ){
+    holoEntity(3):setBoneAngRelative(1,ang( (AB*7.75 - (81.5) ) - (EQ*3.24),0,0))     
+    }elseif(ABrake == 2){
+    holoEntity(3):setBoneAngRelative(1,ang(AB*55.37,0,0))   
+    }elseif(ABrake == 6){
+    holoEntity(3):setBoneAngRelative(1,ang(AB*20.885,0,0))   
+    }
+    ]#
+    
+    #Above 84 & 1 to 0 part is unsolvablely smooth. 
+    if(ABrake == 0){
+    holoEntity(3):setBoneAngRelative(1,ang(0,0,0))
+    }
+    if(ABrake == 1 & EQ == 84){
+    holoEntity(3):setBoneAngRelative(1,ang(AB*7.75,0,0))
+    }elseif(ABrake == 1 & EQ | ABrake == 1 & EQ == 0){
+    holoEntity(3):setBoneAngRelative(1,ang(AB*78.9,0,0))
+    }
+    if(ABrake == 2){
+    holoEntity(3):setBoneAngRelative(1,ang(AB*55.37,0,0))   
+    }
+    if(ABrake == 6){
+    holoEntity(3):setBoneAngRelative(1,ang(AB*20.885,0,0))   
+    }
+    holoEntity(3):setBoneAngRelative(2,ang(BCI*-130,0,0))   
+    #
+    holoEntity(4):setBoneAngRelative(1,ang(LB*1.5,0,-7.56*B))   
+    }else{
+    holoEntity(2):setBodygroup(1,0)
+    }
+    
+    Dir+=(Reverser-Dir)/2
+    Thr+=(Notch-Thr)/2
+    Dyn+=(DynaNotch-Dyn)/2
+    AB+=(ABrake-AB)/2
+    BCI+=(BrakeCutIn-BCI)/2
+    LB+=(LBrake-LB)/2
+    B+=(Bleed-B)/2
+    
+#----------------------------------------------------------------------#
+    
+    if(changed(BellToggle) & BellToggle == 1){
+        Bell=!Bell
+        E:soundPlay(0,0,Bell ? BellOn : BellOff)
+        }
+        
+    if(changed(LightToggle) & LightToggle == 1){
+        Light=!Light
+        E:soundPlay(0,Light,LightSound)
+        }
+        
+    if(changed(MiscToggle) & MiscToggle == 1){
+        Misc=!Misc
+        }
+#----------------------------------------------------------------------#
+
+    if(Quill){
+        holoEntity(5):setBodygroup(1,1)
+    }
+    if(Blast){
+        holoEntity(5):setBodygroup(1,2)
+    }
+    if(Quill == 0 & !Blast){
+        holoEntity(5):setBodygroup(1,0)
+    }
+    if(Blast == 0 & !Quill){
+        holoEntity(5):setBodygroup(1,0)
+    }
+
+#----------------------------------------------------------------------#
+    #[ Extras
+
+#----------------------------------------------------------------------#
+#
+ 
+    A = 1000
+    holoCreate(A)
+    holoParent(A,E)
+    holoModel(A,"")
+    holoScale(A,vec(1,1,1))
+    holoAng(A,E:toWorld(ang(0,0,0)))
+    holoPos(A,E:toWorld(vec(0,0,0)))
+    holoColor(A,vec(127))
+    holoBodygroup(A,0,0)
+    holoClipEnabled(A,1,1)
+    holoClipEnabled(A,2,1)
+    holoClipEnabled(A,3,1)
+    holoClip(A,1,vec(0,0,0),vec(0,0,0),0)
+    holoClip(A,2,vec(0,0,0),vec(0,0,0),0)
+    holoClip(A,3,vec(0,0,0),vec(0,0,0),0)
+    holoMaterial(A,"")
+    holoEntity(A):setSubMaterial(0,"") #Base
+    holoAlpha(A,255)
+   
+]#
+#
