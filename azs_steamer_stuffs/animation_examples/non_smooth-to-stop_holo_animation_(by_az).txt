@@ -1,0 +1,35 @@
+@name Non Smooth-To-Stop Holo Animation (By AZ)
+@inputs Input
+@outputs Test
+@persist Test
+@trigger none
+
+#Self Explanatory, no date counted bcs i forgor / didnt felt like it for some reason
+#Time: PM EST 2/12/23
+
+E = entity()
+ 
+interval(100)
+
+if(first()|dupefinished()){
+
+    A = 1
+    holoCreate(A)
+    holoParent(A,E)
+    holoModel(A,"models/bobsters_trains/coupling/hook.mdl") #Why not lol
+    holoScale(A,vec(1,1,1))
+    holoAng(A,E:toWorld(ang(0,0,0)))
+    holoPos(A,E:toWorld(vec(0,0,0)))
+    holoColor(A,vec(255))
+    
+}
+
+#Thanks Laz
+if(Input & Test < 18) {
+  Test += 1
+}
+elseif(!Input & Test > 0){
+  Test -= 1
+}
+
+    holoAng(1,E:toWorld(ang(Test*10,0,0)))
