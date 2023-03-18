@@ -1,0 +1,551 @@
+@name Clip-n-Nose Stripe E2 (By AZ)
+#@inputs 
+#@outputs 
+@persist BaseModel:string [E,E1,P2M]:entity [StripeType,P2MID,StripeAlpha]:number 
+@trigger none
+@model models/anytrains/props/detail/emd_nose.mdl
+
+#Started At: | 12:14AM - 3:44AM | 12:18PM - 8:41PM |
+#Time: EST   | 3/              12              /23 |
+
+if(first()|dupefinished()){
+
+E = entity()
+E:setAlpha(0)
+timer("zeroholo",100)
+
+#------------------------------------------------------------------------------------------------------------------------------------------------------#
+
+BaseModel = "models/anytrains/props/detail/emd_nose.mdl"
+
+StripeType = 0
+StripeAlpha = 255 #For E2M purposes
+
+}
+
+#------------------------------------------------------------------------------------------------------------------------------------------------------#
+
+    if(clk("zeroholo")){
+    #Holo Controller
+    A = 0
+    holoCreate(A)
+    holoParent(A,E)
+    holoModel(A,"")
+    holoScale(A,vec(1,1,1))
+    holoAng(A,E:toWorld(ang(0,0,0)))
+    holoPos(A,E:toWorld(vec(0,0,0)))
+    holoColor(A,vec(255))
+#    holoMaterial(A,"magtrains/invisible")
+    holoAlpha(A,255)
+    E1 = holoEntity(A)
+    timer("1stholo",100) #Thought itll be cool   
+}
+    
+#------------------------------------------------------------------------------------------------------------------------------------------------------#
+    #Right
+    
+    if(clk("1stholo")){
+    A = 1
+    holoCreate(A)
+    holoParent(A,E1)
+    holoModel(A,BaseModel)
+    holoScale(A,vec(1,1,1))
+    holoAng(A,E1:toWorld(ang(0,0,0)))
+    holoPos(A,E1:toWorld(vec(0,0,0)))
+    holoColor(A,vec(127))
+    holoBodygroup(A,1,5)
+    holoClipEnabled(A,1,1)
+    holoClipEnabled(A,2,1)
+    holoClipEnabled(A,3,1)
+    holoClip(A,1,vec(-92.5,0,0),vec(-1,0,0),0)
+    holoClip(A,2,vec(0,0,0),vec(0,14.5,2.5),0)
+    holoClip(A,3,vec(0,0,0),vec(0,-14.5,2.5),0)
+    holoEntity(A):setSubMaterial(1,"")
+    holoAlpha(A,255)
+    timer("2ndholo",100)  
+
+}
+    if(clk("2ndholo")){  
+    A = 2
+    holoCreate(A)
+    holoParent(A,E1)
+    holoModel(A,BaseModel)
+    holoScale(A,vec(1,1,1))
+    holoAng(A,E1:toWorld(ang(0,0,0)))
+    holoPos(A,E1:toWorld(vec(0,0,0)))
+    holoColor(A,vec(64))
+    holoBodygroup(A,1,5)
+    holoClipEnabled(A,1,1)
+    holoClipEnabled(A,2,1)
+    holoClipEnabled(A,3,1)
+    holoClip(A,1,vec(-92.5,0,0),vec(-1,0,0),0)
+    holoClip(A,2,vec(0,0,0),vec(0,-14.5,-2.5),0)
+    holoClip(A,3,vec(0,-5,0),vec(0,14.5,2.5),0)
+    holoEntity(A):setSubMaterial(1,"")
+    holoAlpha(A,255)
+    timer("3rdholo",100) 
+   
+}
+    if(clk("3rdholo")){
+    A = 3
+    holoCreate(A)
+    holoParent(A,E1)
+    holoModel(A,BaseModel)
+    holoScale(A,vec(1,1,1))
+    holoAng(A,E1:toWorld(ang(0,0,0)))
+    holoPos(A,E1:toWorld(vec(0,0,0)))
+    holoColor(A,vec(191))
+    holoBodygroup(A,1,5)
+    holoClipEnabled(A,1,1)
+    holoClipEnabled(A,2,1)
+    holoClipEnabled(A,3,1)
+    holoClip(A,1,vec(-92.5,0,0),vec(-1,0,0),0)
+    holoClip(A,2,vec(0,-5,0),vec(0,-14.5,-2.5),0)
+    holoClip(A,3,vec(0,-10,0),vec(0,14.5,2.5),0)
+    holoEntity(A):setSubMaterial(1,"")
+    holoAlpha(A,255)
+    timer("4thholo",100)    
+}
+    if(clk("4thholo")){
+    A = 4
+    holoCreate(A)
+    holoParent(A,E1)
+    holoModel(A,BaseModel)
+    holoScale(A,vec(1,1,1))
+    holoAng(A,E1:toWorld(ang(0,0,0)))
+    holoPos(A,E1:toWorld(vec(0,0,0)))
+    holoColor(A,vec(64))
+    holoBodygroup(A,1,5)
+    holoClipEnabled(A,1,1)
+    holoClipEnabled(A,2,1)
+    holoClipEnabled(A,3,1)
+    holoClip(A,1,vec(-92.5,0,0),vec(-1,0,0),0)
+    holoClip(A,2,vec(0,-10,0),vec(0,-14.5,-2.5),0)
+    holoClip(A,3,vec(0,-15,0),vec(0,14.5,2.5),0)
+    holoEntity(A):setSubMaterial(1,"")
+    holoAlpha(A,255)
+    timer("5thholo",100)   
+}
+    if(clk("5thholo")){
+    A = 5
+    holoCreate(A)
+    holoParent(A,E1)
+    holoModel(A,BaseModel)
+    holoScale(A,vec(1,1,1))
+    holoAng(A,E1:toWorld(ang(0,0,0)))
+    holoPos(A,E1:toWorld(vec(0,0,0)))
+    holoColor(A,vec(191))
+    holoBodygroup(A,1,5)
+    holoClipEnabled(A,1,1)
+    holoClipEnabled(A,2,1)
+    holoClipEnabled(A,3,1)
+    holoClip(A,1,vec(-92.5,0,0),vec(-1,0,0),0)
+    holoClip(A,2,vec(0,-15,0),vec(0,-14.5,-2.5),0)
+    holoClip(A,3,vec(0,-20,0),vec(0,14.5,2.5),0)
+    holoEntity(A):setSubMaterial(1,"")
+    holoAlpha(A,255)
+    timer("6thholo",100)   
+}
+    if(clk("6thholo")){
+    A = 6
+    holoCreate(A)
+    holoParent(A,E1)
+    holoModel(A,BaseModel)
+    holoScale(A,vec(1,1,1))
+    holoAng(A,E1:toWorld(ang(0,0,0)))
+    holoPos(A,E1:toWorld(vec(0,0,0)))
+    holoColor(A,vec(64))
+    holoBodygroup(A,1,5)
+    holoClipEnabled(A,1,1)
+    holoClipEnabled(A,2,1)
+    holoClipEnabled(A,3,1)
+    holoClip(A,1,vec(-92.5,0,0),vec(-1,0,0),0)
+    holoClip(A,2,vec(0,-20,0),vec(0,-14.5,-2.5),0)
+    holoClip(A,3,vec(0,-25,0),vec(0,14.5,2.5),0)
+    holoEntity(A):setSubMaterial(1,"")
+    holoAlpha(A,255)
+    timer("7thholo",100)
+}
+    if(clk("7thholo")){
+    A = 7
+    holoCreate(A)
+    holoParent(A,E1)
+    holoModel(A,BaseModel)
+    holoScale(A,vec(1,1,1))
+    holoAng(A,E1:toWorld(ang(0,0,0)))
+    holoPos(A,E1:toWorld(vec(0,0,0)))
+    holoColor(A,vec(127))
+    holoBodygroup(A,1,5)
+    holoClipEnabled(A,1,1)
+    holoClipEnabled(A,2,1)
+    holoClip(A,1,vec(-92.5,0,0),vec(-1,0,0),0)
+    holoClip(A,2,vec(0,-25,0),vec(0,-14.5,-2.5),0)
+    holoEntity(A):setSubMaterial(1,"")
+    holoAlpha(A,255)
+    timer("8thholo",100)
+}
+#--------------------------------------------------#
+    #Left
+    
+    if(clk("8thholo")){
+    A = 8
+    holoCreate(A)
+    holoParent(A,E1)
+    holoModel(A,BaseModel)
+    holoScale(A,vec(1,1,1))
+    holoAng(A,E1:toWorld(ang(0,0,0)))
+    holoPos(A,E1:toWorld(vec(0,0,0)))
+    holoColor(A,vec(64))
+    holoBodygroup(A,1,5)
+    holoClipEnabled(A,1,1)
+    holoClipEnabled(A,2,1)
+    holoClipEnabled(A,3,1)
+    holoClip(A,1,vec(-92.5,0,0),vec(-1,0,0),0)
+    holoClip(A,2,vec(0,5,0),vec(0,-14.5,2.5),0)
+    holoClip(A,3,vec(0,0,0),vec(0,14.5,-2.5),0)
+    holoEntity(A):setSubMaterial(1,"")
+    holoAlpha(A,255)
+    timer("9thholo",100)    
+}
+    if(clk("9thholo")){
+    A = 9
+    holoCreate(A)
+    holoParent(A,E1)
+    holoModel(A,BaseModel)
+    holoScale(A,vec(1,1,1))
+    holoAng(A,E1:toWorld(ang(0,0,0)))
+    holoPos(A,E1:toWorld(vec(0,0,0)))
+    holoColor(A,vec(191))
+    holoBodygroup(A,1,5)
+    holoClipEnabled(A,1,1)
+    holoClipEnabled(A,2,1)
+    holoClipEnabled(A,3,1)
+    holoClip(A,1,vec(-92.5,0,0),vec(-1,0,0),0)
+    holoClip(A,2,vec(0,10,0),vec(0,-14.5,2.5),0)
+    holoClip(A,3,vec(0,5,0),vec(0,14.5,-2.5),0)
+    holoEntity(A):setSubMaterial(1,"")
+    holoAlpha(A,255)
+    timer("10thholo",100)
+}
+    if(clk("10thholo")){
+    A = 10
+    holoCreate(A)
+    holoParent(A,E1)
+    holoModel(A,BaseModel)
+    holoScale(A,vec(1,1,1))
+    holoAng(A,E1:toWorld(ang(0,0,0)))
+    holoPos(A,E1:toWorld(vec(0,0,0)))
+    holoColor(A,vec(64))
+    holoBodygroup(A,1,5)
+    holoClipEnabled(A,1,1)
+    holoClipEnabled(A,2,1)
+    holoClipEnabled(A,3,1)
+    holoClip(A,1,vec(-92.5,0,0),vec(-1,0,0),0)
+    holoClip(A,2,vec(0,15,0),vec(0,-14.5,2.5),0)
+    holoClip(A,3,vec(0,10,0),vec(0,14.5,-2.5),0)
+    holoEntity(A):setSubMaterial(1,"")
+    holoAlpha(A,255)
+    timer("11thholo",100)
+} 
+    if(clk("11thholo")){
+    A = 11
+    holoCreate(A)
+    holoParent(A,E1)
+    holoModel(A,BaseModel)
+    holoScale(A,vec(1,1,1))
+    holoAng(A,E1:toWorld(ang(0,0,0)))
+    holoPos(A,E1:toWorld(vec(0,0,0)))
+    holoColor(A,vec(191))
+    holoBodygroup(A,1,5)
+    holoClipEnabled(A,1,1)
+    holoClipEnabled(A,2,1)
+    holoClipEnabled(A,3,1)
+    holoClip(A,1,vec(-92.5,0,0),vec(-1,0,0),0)
+    holoClip(A,2,vec(0,20,0),vec(0,-14.5,2.5),0)
+    holoClip(A,3,vec(0,15,0),vec(0,14.5,-2.5),0)
+    holoEntity(A):setSubMaterial(1,"")
+    holoAlpha(A,255)
+    timer("12thholo",100)   
+}
+    if(clk("12thholo")){
+    A = 12
+    holoCreate(A)
+    holoParent(A,E1)
+    holoModel(A,BaseModel)
+    holoScale(A,vec(1,1,1))
+    holoAng(A,E1:toWorld(ang(0,0,0)))
+    holoPos(A,E1:toWorld(vec(0,0,0)))
+    holoColor(A,vec(64))
+    holoBodygroup(A,1,5)
+    holoClipEnabled(A,1,1)
+    holoClipEnabled(A,2,1)
+    holoClipEnabled(A,3,1)
+    holoClip(A,1,vec(-92.5,0,0),vec(-1,0,0),0)
+    holoClip(A,2,vec(0,25,0),vec(0,-14.5,2.5),0)
+    holoClip(A,3,vec(0,20,0),vec(0,14.5,-2.5),0)
+    holoEntity(A):setSubMaterial(1,"")
+    holoAlpha(A,255)
+    timer("13thholo",100)
+}
+    if(clk("13thholo")){
+    A = 13
+    holoCreate(A)
+    holoParent(A,E1)
+    holoModel(A,BaseModel)
+    holoScale(A,vec(1,1,1))
+    holoAng(A,E1:toWorld(ang(0,0,0)))
+    holoPos(A,E1:toWorld(vec(0,0,0)))
+    holoColor(A,vec(127))
+    holoBodygroup(A,1,5)
+    holoClipEnabled(A,1,1)
+    holoClipEnabled(A,2,1)
+    holoClip(A,1,vec(-92.5,0,0),vec(-1,0,0),0)
+    holoClip(A,2,vec(0,25,0),vec(0,14.5,-2.5),0)
+    holoEntity(A):setSubMaterial(1,"")
+    holoAlpha(A,255)
+}
+    
+#------------------------------------------------------------------------------------------------------------------------------------------------------#
+    #E2M Controller
+
+    P2MID = 14
+    P2M = p2mCreate(P2MID, E:toWorld(vec(0,0,0)), E:toWorld(ang(0,90,0))) 
+
+#------------------------------------------------------------------------------------------------------------------------------------------------------#
+    #Right
+    
+    A = 1
+    P2M:p2mPushModel(A,table(
+        "model" = BaseModel, "pos" = vec(0,0,0), "ang" = ang(0,0,0), "scale" = vec(1,1,1), "bodygroup" = 5, "submodels" = array(), "submodelswl" = 1, 
+        "flat" = 0, "inside" = 0, "clips" = array(
+        vec(0,92.5,0),vec(0,1,0),
+        vec(0,0,0),vec(14.5,0,2.5),
+        vec(0,0,0),vec(-14.5,0,2.5))
+    )) 
+    P2M:p2mSetColor(A,vec(127)) 
+    
+    A = 2
+    P2M:p2mPushModel(A,table(
+        "model" = BaseModel, "pos" = vec(0,0,0), "ang" = ang(0,0,0), "scale" = vec(1,1,1), "bodygroup" = 5, "submodels" = array(), "submodelswl" = 1, 
+        "flat" = 0, "inside" = 0, "clips" = array(
+        vec(0,92.5,0),vec(0,1,0),
+        vec(0,0,0),vec(14.5,0.665,2.5),
+        vec(0,0,0),vec(-14.5,0,-2.5)) 
+    ))
+    P2M:p2mSetColor(A,vec(64)) 
+    
+    A = 3
+    P2M:p2mPushModel(A,table(
+        "model" = BaseModel, "pos" = vec(0,0,0), "ang" = ang(0,0,0), "scale" = vec(1,1,1), "bodygroup" = 5, "submodels" = array(), "submodelswl" = 1, 
+        "flat" = 0, "inside" = 0, "clips" = array(
+        vec(0,92.5,0),vec(0,1,0),
+        vec(0,0,0),vec(14.5,1.355,2.5),
+        vec(0,0,0),vec(-14.5,-0.665,-2.5)) 
+    ))
+    P2M:p2mSetColor(A,vec(191)) 
+    
+    A = 4
+    P2M:p2mPushModel(A,table(
+        "model" = BaseModel, "pos" = vec(0,0,0), "ang" = ang(0,0,0), "scale" = vec(1,1,1), "bodygroup" = 5, "submodels" = array(), "submodelswl" = 1, 
+        "flat" = 0, "inside" = 0, "clips" = array(
+        vec(0,92.5,0),vec(0,1,0),
+        vec(0,0,0),vec(14.5,2.036,2.5),
+        vec(0,0,0),vec(-14.5,-1.355,-2.5)) 
+    ))
+    P2M:p2mSetColor(A,vec(64)) 
+    
+    A = 5
+    P2M:p2mPushModel(A,table(
+        "model" = BaseModel, "pos" = vec(0,0,0), "ang" = ang(0,0,0), "scale" = vec(1,1,1), "bodygroup" = 5, "submodels" = array(), "submodelswl" = 1, 
+        "flat" = 0, "inside" = 0, "clips" = array(
+        vec(0,92.5,0),vec(0,1,0),
+        vec(0,0,0),vec(14.5,2.78,2.5),
+        vec(0,0,0),vec(-14.5,-2.035,-2.5)) 
+    ))
+    P2M:p2mSetColor(A,vec(191)) 
+    
+    A = 6
+    P2M:p2mPushModel(A,table(
+        "model" = BaseModel, "pos" = vec(0,0,0), "ang" = ang(0,0,0), "scale" = vec(1,1,1), "bodygroup" = 5, "submodels" = array(), "submodelswl" = 1, 
+        "flat" = 0, "inside" = 0, "clips" = array(
+        vec(0,92.5,0),vec(0,1,0),
+        vec(0,0,0),vec(14.5,3.55,2.5),
+        vec(0,0,0),vec(-14.5,-2.78,-2.5)) 
+    ))
+    P2M:p2mSetColor(A,vec(64))
+    
+    A = 7
+    P2M:p2mPushModel(A,table(
+        "model" = BaseModel, "pos" = vec(0,0,0), "ang" = ang(0,0,0), "scale" = vec(1,1,1), "bodygroup" = 5, "submodels" = array(), "submodelswl" = 1, 
+        "flat" = 0, "inside" = 0, "clips" = array(
+        vec(0,92.5,0),vec(0,1,0),
+        vec(0,0,0),vec(14.5,5.64245,2.5),
+        vec(0,0,0),vec(-14.5,-3.55,-2.5)) 
+    ))
+    P2M:p2mSetColor(A,vec(127)) 
+    
+#------------------------------------------------------------------------------------------------------------------------------------------------------#
+    #Left    
+    
+    A = 8
+    P2M:p2mPushModel(A,table(
+        "model" = BaseModel, "pos" = vec(0,0,0), "ang" = ang(0,0,0), "scale" = vec(1,1,1), "bodygroup" = 5, "submodels" = array(), "submodelswl" = 1, 
+        "flat" = 0, "inside" = 0, "clips" = array(
+        vec(0,92.5,0),vec(0,1,0),
+        vec(0,0,0),vec(14.5,0,-2.5),
+        vec(0,0,0),vec(-14.5,0.642,2.5))
+    )) 
+    P2M:p2mSetColor(A,vec(64)) 
+    
+    A = 9
+    P2M:p2mPushModel(A,table(
+        "model" = BaseModel, "pos" = vec(0,0,0), "ang" = ang(0,0,0), "scale" = vec(1,1,1), "bodygroup" = 5, "submodels" = array(), "submodelswl" = 1, 
+        "flat" = 0, "inside" = 0, "clips" = array(
+        vec(0,92.5,0),vec(0,1,0),
+        vec(0,0,0),vec(14.5,-0.6425,-2.5),
+        vec(0,0,0),vec(-14.5,1.35,2.5))
+    )) 
+    P2M:p2mSetColor(A,vec(191))
+     
+    A = 10
+    P2M:p2mPushModel(A,table(
+        "model" = BaseModel, "pos" = vec(0,0,0), "ang" = ang(0,0,0), "scale" = vec(1,1,1), "bodygroup" = 5, "submodels" = array(), "submodelswl" = 1, 
+        "flat" = 0, "inside" = 0, "clips" = array(
+        vec(0,92.5,0),vec(0,1,0),
+        vec(0,0,0),vec(14.5,-1.35,-2.5),
+        vec(0,0,0),vec(-14.5,2.025,2.5))
+    )) 
+    P2M:p2mSetColor(A,vec(64)) 
+    
+    A = 11
+    P2M:p2mPushModel(A,table(
+        "model" = BaseModel, "pos" = vec(0,0,0), "ang" = ang(0,0,0), "scale" = vec(1,1,1), "bodygroup" = 5, "submodels" = array(), "submodelswl" = 1, 
+        "flat" = 0, "inside" = 0, "clips" = array(
+        vec(0,92.5,0),vec(0,1,0),
+        vec(0,0,0),vec(14.5,-2.025,-2.5),
+        vec(0,0,0),vec(-14.5,2.8,2.5))
+    )) 
+    P2M:p2mSetColor(A,vec(191)) 
+    
+    A = 12
+    P2M:p2mPushModel(A,table(
+        "model" = BaseModel, "pos" = vec(0,0,0), "ang" = ang(0,0,0), "scale" = vec(1,1,1), "bodygroup" = 5, "submodels" = array(), "submodelswl" = 1, 
+        "flat" = 0, "inside" = 0, "clips" = array(
+        vec(0,92.5,0),vec(0,1,0),
+        vec(0,0,0),vec(14.5,-2.8,-2.5),
+        vec(0,0,0),vec(-14.5,3.69,2.5))
+    )) 
+    P2M:p2mSetColor(A,vec(64)) 
+    
+    A = 13
+    P2M:p2mPushModel(A,table(
+        "model" = BaseModel, "pos" = vec(0,0,0), "ang" = ang(0,0,0), "scale" = vec(1,1,1), "bodygroup" = 5, "submodels" = array(), "submodelswl" = 1, 
+        "flat" = 0, "inside" = 0, "clips" = array(
+        vec(0,92.5,0),vec(0,1,0),
+        vec(0,0,0),vec(14.5,-3.69,-2.5),
+        vec(0,0,0),vec(-14.5,5.642,2.5))
+    )) 
+    P2M:p2mSetColor(A,vec(127)) 
+    
+#------------------------------------------------------------------------------------------------------------------------------------------------------#
+    #E2M Extras
+    
+    P2M:p2mBuild()
+    P2M:parentTo(E)
+
+#--------------------------------------------------#
+    #Workie things
+    
+    if(StripeType == 0){
+    holoAlpha(1,StripeAlpha)
+    holoAlpha(2,StripeAlpha)
+    holoAlpha(3,StripeAlpha)
+    holoAlpha(4,StripeAlpha)
+    holoAlpha(5,StripeAlpha)
+    holoAlpha(6,StripeAlpha)
+    holoAlpha(7,StripeAlpha)
+    holoAlpha(8,StripeAlpha)
+    holoAlpha(9,StripeAlpha)
+    holoAlpha(10,StripeAlpha)
+    holoAlpha(11,StripeAlpha)
+    holoAlpha(12,StripeAlpha)
+    holoAlpha(13,StripeAlpha)
+    P2M:p2mSetMaterial(1,"magtrains/invisible") 
+    P2M:p2mSetMaterial(2,"magtrains/invisible") 
+    P2M:p2mSetMaterial(3,"magtrains/invisible") 
+    P2M:p2mSetMaterial(4,"magtrains/invisible") 
+    P2M:p2mSetMaterial(5,"magtrains/invisible") 
+    P2M:p2mSetMaterial(6,"magtrains/invisible") 
+    P2M:p2mSetMaterial(7,"magtrains/invisible") 
+    P2M:p2mSetMaterial(8,"magtrains/invisible") 
+    P2M:p2mSetMaterial(9,"magtrains/invisible") 
+    P2M:p2mSetMaterial(10,"magtrains/invisible") 
+    P2M:p2mSetMaterial(11,"magtrains/invisible") 
+    P2M:p2mSetMaterial(12,"magtrains/invisible") 
+    P2M:p2mSetMaterial(13,"magtrains/invisible") 
+    }elseif(StripeType == 1){
+    holoAlpha(1,0)
+    holoAlpha(2,0)
+    holoAlpha(3,0)
+    holoAlpha(4,0)
+    holoAlpha(5,0)
+    holoAlpha(6,0)
+    holoAlpha(7,0)
+    holoAlpha(8,0)
+    holoAlpha(9,0)
+    holoAlpha(10,0)
+    holoAlpha(11,0)
+    holoAlpha(12,0)
+    holoAlpha(13,0)
+    P2M:p2mSetMaterial(1,"models/proppertextures/acrylic") 
+    P2M:p2mSetMaterial(2,"models/proppertextures/acrylic") 
+    P2M:p2mSetMaterial(3,"models/proppertextures/acrylic") 
+    P2M:p2mSetMaterial(4,"models/proppertextures/acrylic") 
+    P2M:p2mSetMaterial(5,"models/proppertextures/acrylic") 
+    P2M:p2mSetMaterial(6,"models/proppertextures/acrylic") 
+    P2M:p2mSetMaterial(7,"models/proppertextures/acrylic") 
+    P2M:p2mSetMaterial(8,"models/proppertextures/acrylic") 
+    P2M:p2mSetMaterial(9,"models/proppertextures/acrylic") 
+    P2M:p2mSetMaterial(10,"models/proppertextures/acrylic") 
+    P2M:p2mSetMaterial(11,"models/proppertextures/acrylic") 
+    P2M:p2mSetMaterial(12,"models/proppertextures/acrylic") 
+    P2M:p2mSetMaterial(13,"models/proppertextures/acrylic") 
+    }
+    
+#------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------#
+    #Extras
+       
+#[
+    A = 1000
+    holoCreate(A)
+    holoParent(A,E)
+    holoModel(A,"")
+    holoScale(A,vec(1,1,1))
+    holoAng(A,E:toWorld(ang(0,0,0)))
+    holoPos(A,E:toWorld(vec(0,0,0)))
+    holoColor(A,vec(255))
+    holoBodygroup(A,0,0)
+    holoClipEnabled(A,1,1)
+    holoClip(A,1,vec(0,0,0),vec(0,0,0),0)
+    holoEntity(A):setSubMaterial(1,"")
+    holoMaterial(A,"")
+    holoAlpha(A,255)
+    
+    P2MID = 1
+    P2M = p2mCreate(P2MID, E:toWorld(vec(0,0,0)), E:toWorld(ang(0,0,0))) 
+    
+    A = 1
+    P2M:p2mPushModel(A,table(
+        "model" = "models/props_c17/oildrum001.mdl", "pos" = vec(0,0,0), "ang" = ang(0,0,0), "scale" = vec(1,1,1), "bodygroup" = 0, "submodels" = array(), "submodelswl" = 1, 
+        "flat" = 0, "inside" = 0, "clips" = array(vec(0,0,0),vec(0,0,0)) 
+    ))
+     
+    
+#    P2M:p2mSetUV(A,48) 
+    P2M:p2mSetMaterial(A,"sprops/sprops_grid") 
+    P2M:p2mSetColor(A,vec(255,255,255)) 
+    P2M:p2mBuild()
+    P2M:parentTo(E)                    
+    
+]#
+#------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------#
