@@ -1,0 +1,87 @@
+@name Simplistic WheelRotation (By AZ)
+@inputs Blomberg_b_rsg:entity
+@outputs RoundRotation
+@persist [E]:entity [WheelRotation,Spin,SpeedMul]:number [WheelModel]:string
+@trigger none
+
+#Started At: 5:05 - 5:54
+#Time: PM EST 3/19/23
+
+#The thing that makes everything workable
+interval(100)
+
+if(first()|dupefinished()){
+
+#Main e2 shit
+E = Blomberg_b_rsg
+E:setAlpha(0)
+
+#
+
+#Model
+WheelModel = "models/bobsters_trains_2/wheels/standard/double_72.mdl"
+
+#Variable numbers or smth
+Spin = 0
+SpeedMul = 5.25 
+#DOESNT MATTER WHAT SIZE THE MODEL IS, THIS EFFECTS THE SPEED AND THIS IS THE MOST ACCURATE SPOT I CAN GET TO FOR THE WHEEL THAT IS DEFAULT-EDLY BY THE "WHEEL 72" MODEL THAT I PUT.
+#(Remove this if you are changing it or smth idc lol)#
+
+#
+    #Main Holo
+    A = 0
+    holoCreate(A)
+    holoParent(A,E)
+    holoModel(A,WheelModel)
+    holoScale(A,vec(1,1,1))
+    holoAng(A,E:toWorld(ang(0,0,0)))
+    holoPos(A,E:toWorld(vec(0,0,-10.5)))
+    holoColor(A,vec(255))
+    holoBodygroup(A,2,1)
+    holoBodygroup(A,3,1)
+    holoEntity(A):setSubMaterial(1,"")
+    holoMaterial(A,"")
+    holoAlpha(A,255)
+#
+#[
+    #Extras
+    A = 1000
+    holoCreate(A)
+    holoParent(A,E)
+    holoModel(A,"")
+    holoScale(A,vec(1,1,1))
+    holoAng(A,E:toWorld(ang(0,0,0)))
+    holoPos(A,E:toWorld(vec(0,0,0)))
+    holoColor(A,vec(255))
+    holoBodygroup(A,0,0)
+    holoClipEnabled(A,1,1)
+    holoClip(A,1,vec(0,0,0),vec(0,0,0),0)
+    holoEntity(A):setSubMaterial(1,"")
+    holoMaterial(A,"")
+    holoAlpha(A,255)
+    
+]#
+#
+
+function void updateRods(Speed:number){
+#your a wizard big e
+WheelRotation += Speed * 1
+if(WheelRotation > 360) {WheelRotation = WheelRotation - 360}
+elseif(WheelRotation < -360) {WheelRotation = WheelRotation + 360}
+
+    holoAng(0,E:toWorld(ang(-WheelRotation,-90 #[THIS EFFECTS THE DIRECTION]# ,0)))
+
+}
+updateRods(0)
+}
+
+RoundRotation = round(WheelRotation)
+
+#The 'If-else' is here becauses it makes it easier by testing out the base and by the speed separately
+if(Spin == 0){
+    Speed = (Spin+E:velL():y()/SpeedMul)
+}else{
+    Speed = Spin
+}
+
+updateRods(Speed)
