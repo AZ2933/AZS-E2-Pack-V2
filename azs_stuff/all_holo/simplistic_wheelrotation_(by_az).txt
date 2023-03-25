@@ -1,87 +1,98 @@
 @name Simplistic WheelRotation (By AZ)
 @inputs Blomberg_b_rsg:entity
-@outputs RoundRotation
-@persist [E]:entity [WheelRotation,Spin,SpeedMul]:number [WheelModel]:string
+@outputs RoundRotation WheelRotation
+@persist [E]:entity [WheelRotation,Spin,SpeedMul,Speed,Diameter]:number [WheelModel]:string
 @trigger none
-
-#Started At: 5:05 - 5:54
-#Time: PM EST 3/19/23
+                                    #Tylar
+#Started At:  | 5:05 - 5:54 | 6:24 - 7:51 - 8:36 |
+#Time: PM EST | 3/ 19       -        20      /23 |
 
 #The thing that makes everything workable
 interval(100)
 
 if(first()|dupefinished()){
 
-#Main e2 shit
-E = Blomberg_b_rsg
-E:setAlpha(0)
+    #Main e2 shit
+    E = Blomberg_b_rsg
+    E:setAlpha(0)
 
-#
+    #
 
-#Model
-WheelModel = "models/bobsters_trains_2/wheels/standard/double_72.mdl"
+    #Model
+    WheelModel = "models/bobsters_trains_2/wheels/standard/double_72.mdl"
 
-#Variable numbers or smth
-Spin = 0
-SpeedMul = 5.25 
-#DOESNT MATTER WHAT SIZE THE MODEL IS, THIS EFFECTS THE SPEED AND THIS IS THE MOST ACCURATE SPOT I CAN GET TO FOR THE WHEEL THAT IS DEFAULT-EDLY BY THE "WHEEL 72" MODEL THAT I PUT.
-#(Remove this if you are changing it or smth idc lol)#
-
-#
-    #Main Holo
-    A = 0
-    holoCreate(A)
-    holoParent(A,E)
-    holoModel(A,WheelModel)
-    holoScale(A,vec(1,1,1))
-    holoAng(A,E:toWorld(ang(0,0,0)))
-    holoPos(A,E:toWorld(vec(0,0,-10.5)))
-    holoColor(A,vec(255))
-    holoBodygroup(A,2,1)
-    holoBodygroup(A,3,1)
-    holoEntity(A):setSubMaterial(1,"")
-    holoMaterial(A,"")
-    holoAlpha(A,255)
-#
-#[
-    #Extras
-    A = 1000
-    holoCreate(A)
-    holoParent(A,E)
-    holoModel(A,"")
-    holoScale(A,vec(1,1,1))
-    holoAng(A,E:toWorld(ang(0,0,0)))
-    holoPos(A,E:toWorld(vec(0,0,0)))
-    holoColor(A,vec(255))
-    holoBodygroup(A,0,0)
-    holoClipEnabled(A,1,1)
-    holoClip(A,1,vec(0,0,0),vec(0,0,0),0)
-    holoEntity(A):setSubMaterial(1,"")
-    holoMaterial(A,"")
-    holoAlpha(A,255)
+        #Variable numbers or smth
     
-]#
-#
+    Spin = 0
+    #Basically, no spin = freely, Spin = no movement of the base and only its rotation
+    
+    SpeedMul = 6.925
+    #THIS DEPENDS ON THE SIZE, RECOMMENDED TO GET A PROP VERSION OF IT AND ROPE IT TO THE BASE THAT IS EITHER A PLATE WITH WHEELS OR A BOGIE, AND MAKE SURE THEY BOTH SYNC UP RIGHT
+    #(AND IT DOES NOT WORK LIKE THE HOLOWHEELS, THIS IS BY WHAT THE MODEL YOUR USING BY MAKING THAT HAPPEN SO GET USED TO IT)
+    
+    Diameter = 54
+    #DOESNT MATTER WHAT SIZE THE MODEL IS, THIS EFFECTS THE SPEED AND THIS IS THE MOST ACCURATE SPOT I CAN GET TO FOR THE WHEEL THAT IS DEFAULT-EDLY BY THE "WHEEL 72" MODEL THAT I PUT.
+    #(Remove this if you are changing it or smth idc lol)#
 
-function void updateRods(Speed:number){
-#your a wizard big e
-WheelRotation += Speed * 1
-if(WheelRotation > 360) {WheelRotation = WheelRotation - 360}
-elseif(WheelRotation < -360) {WheelRotation = WheelRotation + 360}
+    #
+        #Main Holo
+        A = 0
+        holoCreate(A)
+        holoParent(A,E)
+        holoModel(A,WheelModel)
+        holoScale(A,vec(1,1,1))
+        holoAng(A,E:toWorld(ang(0,0,0)))
+        holoPos(A,E:toWorld(vec(0,0,-10.5)))
+        holoColor(A,vec(255))
+        holoBodygroup(A,2,1)
+        holoBodygroup(A,3,1)
+        holoEntity(A):setSubMaterial(1,"")
+        holoMaterial(A,"")
+        holoAlpha(A,255)
+    #
+    #[
+        #Extras
+        A = 1000
+        holoCreate(A)
+        holoParent(A,E)
+        holoModel(A,"")
+        holoScale(A,vec(1,1,1))
+        holoAng(A,E:toWorld(ang(0,0,0)))
+        holoPos(A,E:toWorld(vec(0,0,0)))
+        holoColor(A,vec(255))
+        holoBodygroup(A,0,0)
+        holoClipEnabled(A,1,1)
+        holoClip(A,1,vec(0,0,0),vec(0,0,0),0)
+        holoEntity(A):setSubMaterial(1,"")
+        holoMaterial(A,"")
+        holoAlpha(A,255)
+        
+    ]#
 
-    holoAng(0,E:toWorld(ang(-WheelRotation,-90 #[THIS EFFECTS THE DIRECTION]# ,0)))
 
+    # updateRods(0)
+    holoAng(0, E:toWorld(ang(0, -90, 0)))
+
+
+} elseif (clk()) { # translation: if this run is triggered by the interval() call.
+
+    RoundRotation = round(WheelRotation)
+
+    #The 'If-else' is here becauses it makes it easier by testing out the base and by the speed separately
+    if(Spin == 0){
+        Speed = (Spin+E:velL():y()/SpeedMul*(Diameter/30))
+    }else{                    #/\ CHANGE THIS LETTER EITHER Y,X, OR Z. IT CHANGES THE DIRECTION
+        Speed = Spin
+    }
+
+    #updateRods(-Speed)
+    WheelRotation += Speed * -1
+
+    if(WheelRotation > 360) {
+        WheelRotation = WheelRotation - 360
+    }elseif(WheelRotation < -360) {
+        WheelRotation = WheelRotation + 360
+    }
+
+    holoAng(0,E:toWorld(ang(WheelRotation,-90 #[THIS EFFECTS THE DIRECTION]# ,0)))
 }
-updateRods(0)
-}
-
-RoundRotation = round(WheelRotation)
-
-#The 'If-else' is here becauses it makes it easier by testing out the base and by the speed separately
-if(Spin == 0){
-    Speed = (Spin+E:velL():y()/SpeedMul)
-}else{
-    Speed = Spin
-}
-
-updateRods(Speed)
