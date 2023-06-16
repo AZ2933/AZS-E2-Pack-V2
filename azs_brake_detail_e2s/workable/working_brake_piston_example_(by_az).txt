@@ -1,0 +1,114 @@
+@name Working Brake Piston Example (By AZ)
+@inputs Push
+@outputs AirOut AirOutRound AirDec AirDecRound
+@persist Air [E]:entity [PistonModel,CylinderModel]:string NIU PistonBG PistonLengthOption AirSpeedMul AirMul Smooth SmoothSpeed
+@trigger none
+
+#Started At: 5:50 - 8:28
+#Time: PM EST 6/15/23
+
+if(first()|dupefinished()){
+    
+E = entity()
+
+#
+
+PistonModel = "models/az2933/misc/brakes/brake_cylinder_piston.mdl"
+CylinderModel = "models/zexciv_train_stuff/details/brakeparts/brake_cylinder.mdl"
+
+PistonLengthOption = 0
+#0 = Short Enough
+#1 = Little Long
+#2 = Long As The Cylinder ( :p )
+
+Smooth = 1 
+#Self explanatory but whatevs
+#0 = 'Static' Movement
+#1 = 'FPS' Movement
+
+SmoothSpeed = 12
+#Literally optional, you don't HAVE to keep the same number
+
+#
+
+    A = 1
+    holoCreate(A)
+    holoParent(A,E)
+    holoModel(A,CylinderModel)
+    holoScale(A,vec(1,1,1))
+    holoAng(A,E:toWorld(ang(0,0,180)))
+    holoPos(A,E:toWorld(vec(0,0,0)))
+    holoColor(A,vec(255))
+    holoClipEnabled(A,1)
+    holoClip(A,1,vec(13.782,0,0),vec(-1,0,0),0)
+    holoEntity(A):setSubMaterial(2,"magtrains/invisible")
+    holoMaterial(A,"")
+    holoAlpha(A,255)
+    
+    A = 2
+    holoCreate(A)
+    holoParent(A,E)
+    holoModel(A,PistonModel)
+    holoScale(A,vec(1,1,1))
+    holoAng(A,E:toWorld(ang(0,0,0)))
+    holoPos(A,E:toWorld(vec(0,0,0)))
+    holoColor(A,vec(255))
+    holoEntity(A):setSubMaterial(1,"")
+    holoMaterial(A,"")
+    holoAlpha(A,255)
+}
+
+    interval(100)
+
+    if(PistonLengthOption == 0){
+        PistonLimit = 5.15
+        PistonSpeed = 0.515
+        PistonBG = 1
+    }elseif(PistonLengthOption == 1){
+        PistonLimit = 7.22
+        PistonSpeed = 0.3497
+        PistonBG = 2
+    }elseif(PistonLengthOption == 2){
+        PistonLimit = 23
+        PistonSpeed = 1
+        PistonBG = 3
+    }
+
+    if(Push & Air < PistonLimit) {
+      Air += PistonSpeed
+    }elseif(!Push & Air > NIU){
+      Air -= PistonSpeed
+    }
+
+    if(Smooth == 0){
+        AirMul = Air
+    }elseif(Smooth == 1){
+        AirMul+=(Air-AirMul)/SmoothSpeed
+    }
+
+    AirOut = Air
+    AirOutRound = round(Air)
+    AirDec = AirMul
+    AirDecRound = round(AirMul)
+
+    holoBodygroup(2,1,PistonBG)
+    holoPos(2,E:toWorld(vec(AirMul,0,0)))
+    
+#
+#Extras
+#[
+    A = 1000
+    holoCreate(A)
+    holoParent(A,E)
+    holoModel(A,"")
+    holoScale(A,vec(1,1,1))
+    holoAng(A,E:toWorld(ang(0,0,0)))
+    holoPos(A,E:toWorld(vec(0,0,0)))
+    holoColor(A,vec(255))
+    holoBodygroup(A,0,0)
+    holoClipEnabled(A,1,1)
+    holoClip(A,1,vec(0,0,0),vec(0,0,0),0)
+    holoEntity(A):setSubMaterial(1,"")
+    holoMaterial(A,"")
+    holoAlpha(A,255)
+]#
