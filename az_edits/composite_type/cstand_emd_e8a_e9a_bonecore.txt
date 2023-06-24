@@ -1,0 +1,84 @@
+@name ptgamma/cstands_bone/cstand_emd_e8a_e9a_bonecore
+@inputs E8a_e9a:entity CtlTable:table BellToggle LightToggle MiscToggle
+@outputs CONSTRAINT Bell Light Misc
+@persist Bell Light Misc
+@trigger none
+#@strict my ass
+
+#Started At: 6:24 - 7:40
+#Time: PM EST 6/24/23
+
+E = E8a_e9a
+interval(100)
+CONSTRAINT = 1
+
+#USE MY EDITED COMPOSITE CONTROL READER
+#Made By AZ
+
+#
+
+Reverser = CtlTable["SetReverser",number]
+Notch = CtlTable["SetThrottle",number]
+TransitionNotch = CtlTable["TransitionNum",number]
+LocoBrake = CtlTable["SetLocoBrakePressure",number]
+LocoBleed = CtlTable["SetBleeding",number]
+AutoBrake = CtlTable["SetBrakeNotch",number]
+
+BellOnSound = "gsgtrainsounds/misc/air_on.wav"
+BellOffSound = "gsgtrainsounds/misc/air_off.wav"
+
+LightSound = "buttons/lightswitch2.wav"
+
+#
+
+RevBone = E:boneIndex("reverser")
+E:setBoneAng(RevBone,ang(0,90+(Reverser*18),90))
+
+
+ThrBone = E:boneIndex("throttle")
+E:setBoneAng(ThrBone,ang(0,90-(Notch*0.8),90))
+NwhBone = E:boneIndex("throttlewheel")
+E:setBoneAng(NwhBone,ang(0-(Notch/0.452),0,0))
+
+SelBone = E:boneIndex("selectorhandle")
+E:setBoneAng(SelBone,ang(0,70-(TransitionNotch*9.95),90))
+SwhBone = E:boneIndex("selectorwheel")
+E:setBoneAng(SwhBone,ang(0-(TransitionNotch*28),0,0))
+
+LocBone = E:boneIndex("independentrotate")
+E:setBoneAng(LocBone,ang(0,90+(LocoBrake*1.32),90+(LocoBleed*5)))
+
+if(AutoBrake == 0){
+    AutoAng = 142
+}elseif(AutoBrake == 1){
+    AutoAng = 96
+}elseif(AutoBrake == 2){
+    AutoAng = 55
+}elseif(AutoBrake == 6){
+    AutoAng = 0
+}
+
+AutBone = E:boneIndex("autobrake")
+E:setBoneAng(AutBone,ang(0,90+AutoAng,90))
+
+#
+
+if(changed(BellToggle >= 1) & BellToggle){
+    Bell = !Bell
+    soundPlay(1,0,Bell ? BellOnSound : BellOffSound)
+}
+if(changed(LightToggle >= 1) & LightToggle){
+    Light = !Light
+    soundPlay(1,Light,LightSound)
+}
+if(changed(MiscToggle >= 1) & MiscToggle){
+    Misc = !Misc
+}
+
+#
+#Extras
+#[
+TestBone = E:boneIndex("")
+E:setBoneAng(TestBone,ang(0,0,0))
+]#
+#
