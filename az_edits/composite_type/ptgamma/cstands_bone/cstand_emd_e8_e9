@@ -1286,4 +1286,6 @@ if(BellToggle & ~BellToggle){
     holoAng(52,holoEntity(51):toWorld(ang(0,Bell ? 220 : 140,0)))
     Pod:soundPlay(0,1,Bell ? "rlc_delta/cstands/bell_on.wav" : "rlc_delta/cstands/bell_off.wav")
 }
-if(MiscToggle & ~MiscTogg... (1 KB left)
+if(MiscToggle & ~MiscToggle){
+    Misc = !Misc
+}
